@@ -1,26 +1,36 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>App</title>
+    <title>Ri Portfolio</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+
+    <meta name="viewport" content="width=devise-width, initial-scale=1.0" />
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
-      <h5 class="my-0 mr-md-auto font-weight-normal">Ri のポートフォリオ</h5>
+  <body class="body">
+    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-success border-bottom shadow-sm fixed-top">
+      <h3 class="my-0 mr-md-auto font-weight-normal text-white">Ri Portfolio</h5>
       <nav class="my-2 my-md-0 mr-md-3">
-        <a class="p-2 text-dark" href="#">Profile</a>
-        <a class="p-2 text-dark" href="#">Skills</a>
-        <a class="p-2 text-dark" href="#">Works</a>
-        <a class="p-2 text-dark" href="#">Contact</a>
+        <a class="p-2 text-white" href="#">Profile</a>
+        <a class="p-2 text-white" href="#">Skills</a>
+        <a class="p-2 text-white" href="#">Works</a>
+        <a class="p-2 text-white" href="#">Contact</a>
       </nav>
     </div>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
+
     <%= yield %>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+      particlesJS.load('particles-js', '/assets/particlesjs-config.json', function() {
+        console.log('callback - particles.js config loaded');
+      });
+    </script>
   </body>
 </html>

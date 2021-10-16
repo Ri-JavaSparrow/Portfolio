@@ -1,0 +1,7 @@
+runtime: ruby25
+env: standard
+# service: portfolio
+entrypoint: bundle exec rackup --port $PORT
+
+env_variables:
+  SECRET_KEY_BASE: ee22092a1e3bc2a2da839b83297554b705a35a31458c18c8b201ccbc69d69e601989a416b39a00ba3e28e59675a4702012b30354fe11d7cb90e83e4b6d937be0

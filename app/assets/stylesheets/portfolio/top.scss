@@ -1,0 +1,201 @@
+// Place all the styles related to the portfolio controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+// @use "application" as app;
+@import 'application';
+
+
+/* ---------------- 定数 ---------------- */
+// Colors
+$bg-color: rgb(0, 0, 0);
+
+// Dimensions
+$dot-size: 1px;
+$dot-space: 22px;
+
+// profile
+$profile-word-count: 11;
+$profile-view-delay: 1s;
+
+// language-skills
+$language-skills-word-count: 21;
+$language-skills-view1-delay: 0.2s;
+
+$language-skills-view2-start: $language-skills-view1-delay;
+$language-skills-view2-delay: $language-skills-view2-start + 0.2s;
+
+$language-skills-view3-start: $language-skills-view2-delay;
+$language-skills-view3-typing-start: $language-skills-view3-start + 0.3s;
+$language-skills-view3-delay: $language-skills-view3-typing-start + 1.5s;
+
+// framework-skills
+$framework-skills-word-count: 22;
+$framework-skills-view-delay: 1.5s;
+/* ------------------------------- */
+
+
+/* ---------------- mixin ---------------- */
+@mixin profile-cursor($view-delay) {
+    @include cursor-animation($view-delay);
+    &.before {
+        @include fade-out($delay: $view-delay);
+    }
+    &.after {
+        @include fade-out;
+    }
+}
+
+@mixin title($pc: 140px, $tab-horizontal: 140px, $tab-vertical: 140px, $sp: 120px) {
+    vertical-align: top;
+    @include pc {
+        width: $pc;
+    };
+    @include tab-horizontal {
+        width: $tab-horizontal;
+    };
+    @include tab-vertical {
+        width: $tab-vertical;
+    };
+    @include sp {
+        width: $sp;
+    };
+}
+/* ------------------------------- */
+
+
+/* ---------------- 背景設定 ---------------- */
+#particles-js {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    z-index: -1;
+}
+/* ------------------------------- */
+
+
+.contents {
+    width: 100%;
+    margin: 0px auto;
+    @include pc {
+        padding: 10px;
+    };
+    @include tab-horizontal {
+        padding: 10px;
+    };
+    @include tab-vertical {
+        padding: 10px;
+    };
+    @include sp {
+        margin-top: 40px;
+        padding: 10px 0;
+    };
+}
+
+
+/* ---------------- profile ---------------- */
+#profile {
+    opacity: 0;
+    &.typed {
+        opacity: 1;
+        .profile-typing {
+            @include profile-typing($profile-word-count);
+        }
+
+        .fade-in {
+            @include fade-in($delay: $profile-view-delay);
+        }
+
+        .profile-title {
+            color: rgb(114, 62, 255);
+            @include title;
+        }
+
+        .profile-cursor {
+            @include profile-cursor($profile-view-delay);
+        }
+    }
+}
+/* ------------------------------- */
+
+
+/* ---------------- skills ---------------- */
+.beginner {
+    color: rgb(255, 223, 80);
+    @include title(110px, 110px, 110px, 80px);
+}
+.intermediate {
+    color: rgb(89, 161, 255);
+    @include title(110px, 110px, 110px, 80px);
+}
+.advanced {
+    color: rgb(27, 255, 95);
+    @include title(110px, 110px, 110px, 80px);
+}
+
+#language-skills {
+    opacity: 0;
+    &.typed {
+        opacity: 1;
+        .profile-typing {
+            @include profile-typing($language-skills-word-count, $typing-start: $language-skills-view3-typing-start);
+        }
+
+        .fade-in {
+            @include fade-in($delay: $language-skills-view3-delay);
+        }
+
+        .language-skills-title {
+            font-weight: bold;
+            @include title(120px, 120px, 120px, 90px);
+        }
+
+        .line1 {
+            .profile-cursor {
+                @include profile-cursor($language-skills-view1-delay);
+            }
+        }
+        .line2 {
+            @include fade-in($delay: $language-skills-view2-start);
+            .profile-cursor {
+                @include profile-cursor($language-skills-view2-delay);
+            }
+        }
+        .line3 {
+            @include fade-in($delay: $language-skills-view3-start);
+            .profile-cursor {
+                @include profile-cursor($language-skills-view3-delay);
+            }
+        }
+        .profile-cursor {
+            @include profile-cursor($language-skills-view3-delay);
+        }
+    }
+}
+
+#framework-skills {
+    opacity: 0;
+    &.typed {
+        opacity: 1;
+        .profile-typing {
+            @include profile-typing($framework-skills-word-count);
+        }
+
+        .fade-in {
+            @include fade-in($delay: $framework-skills-view-delay);
+        }
+
+        .framework-skills-title {
+            font-weight: bold;
+            @include title(120px, 120px, 120px, 90px);
+        }
+
+        .profile-cursor {
+            @include profile-cursor($framework-skills-view-delay);
+        }
+    }
+}
+/* ------------------------------- */

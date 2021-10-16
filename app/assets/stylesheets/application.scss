@@ -13,4 +13,326 @@
  */
 
  // Custom bootstrap variables must be set or imported *before* bootstrap.
+ // *= require_self
+ // *= require_tree .
+
 @import "bootstrap";
+
+@font-face {
+    font-family: "SFNSMono";
+    src: url('SFNSMono.ttf') format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+/* ---------------- 定数 ---------------- */
+$pc-min-witdh: 1025px; // PC
+$tab-horizontal-max-witdh: 1024px; // タブレット横長
+$tab-vertical-max-witdh: 768px; // タブレット縦長
+$sp-max-witdh: 480px;  // スマホ
+
+$typing-speed: 0.05s;
+$cursor-speed: 1s;
+/* ------------------------------- */
+
+
+/* ---------------- mixin ---------------- */
+@mixin pc {
+    @media (min-width: ($pc-min-witdh)) {
+        @content;
+    }
+}
+@mixin tab-horizontal {
+    @media (max-width: ($tab-horizontal-max-witdh)) {
+        @content;
+    }
+}
+@mixin tab-vertical {
+    @media (max-width: ($tab-vertical-max-witdh)) {
+        @content;
+    }
+}
+@mixin sp {
+    @media (max-width: ($sp-max-witdh)) {
+        @content;
+    }
+}
+
+@mixin cursor-animation($delay: 0s) {
+    -webkit-animation: cursor $cursor-speed $delay infinite;
+    -moz-animation: cursor $cursor-speed $delay infinite;
+    animation: cursor $cursor-speed $delay infinite;
+}
+@mixin terminal-font() {
+    font-family: "SFNSMono";
+    @include pc {
+        font-size: 16px;
+    };
+    @include tab-horizontal {
+        font-size: 16px;
+    };
+    @include tab-vertical {
+        font-size: 16px;
+    };
+    @include sp {
+        font-size: 12px;
+    };
+}
+
+@mixin fade-in($duration:0s, $delay: 0s, $opacity: 0) {
+    opacity: $opacity;
+    animation: fade-in $duration $delay forwards;
+}
+
+@mixin fade-out($duration:0s, $delay: 0s) {
+    animation: fade-out $duration $delay forwards;
+}
+
+@mixin profile-typing($word-count, $typing-start: 0s) {
+    width: #{$word-count}ch;
+
+    -webkit-animation: delay-typing $typing-start, typing ($typing-speed * $word-count) $typing-start steps($word-count) forwards;
+    -moz-animation: delay-typing $typing-start, typing ($typing-speed * $word-count) $typing-start steps($word-count) forwards;
+    animation: delay-typing $typing-start, typing ($typing-speed * $word-count) $typing-start steps($word-count) forwards;
+}
+/* ------------------------------- */
+
+
+html, body {
+    height: 100%;
+}
+.body {
+    text-align: center;
+}
+
+.card-body {
+    @include sp {
+        padding: 8px;
+    };
+}
+
+
+/* ---------------- ターミナル風の表示設定 ---------------- */
+.terminal {
+    text-align: start;
+    background-color: rgba(22, 22, 22, 0.8);
+    color: white;
+    z-index: 5;
+    margin: 0px auto;
+    @include pc {
+        width: 800px;
+    };
+    @include tab-horizontal {
+        width: 600px;
+    };
+    @include tab-vertical {
+        width: 100%;
+    };
+    @include sp {
+        width: 100%;
+    };
+    @include terminal-font;
+
+    // テーブル
+    table {
+        @include pc {
+            margin-bottom: 0.75rem;
+        };
+        @include tab-horizontal {
+            margin-bottom: 0.75rem;
+        };
+        @include tab-vertical {
+            margin-bottom: 0.75rem;
+        };
+        @include sp {
+            margin-bottom: 0.4rem;
+        };
+    }
+    table td {
+        border-collapse: collapse;
+        border-spacing: 0;
+        padding: 0;
+    }
+    table th, table td {
+        @include terminal-font;
+        line-height: 1.5;
+    }
+
+    .card-title {
+        @include pc {
+            margin-bottom: 0.75rem;
+        };
+        @include tab-horizontal {
+            margin-bottom: 0.75rem;
+        };
+        @include tab-vertical {
+            margin-bottom: 0.75rem;
+        };
+        @include sp {
+            margin-bottom: 0.4rem;
+        };
+    }
+
+    // コマンドライン入力の表示設定
+    .command-line {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .typing {
+        /* 
+            タイピング入力表示させるためには、追加で下記パラメータが必須
+            width: <文字数>ch
+            -webkit-animation: typing 0.6s steps(<文字数>), caret 0.3s steps(1) infinite;
+            -moz-animation: typing 0.6s steps(<文字数>), caret 0.3s steps(1) infinite;
+            animation: typing 0.6s steps(<文字数>), caret 0.3s steps(1) infinite;
+        */
+        display: inline-block;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+}
+/* ------------------------------- */
+
+@-webkit-keyframes cursor {
+    0% {
+        opacity: 0;
+    }
+    40% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+@-moz-keyframes cursor {
+    0% {
+        opacity: 0;
+    }
+    40% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+@keyframes cursor {
+    0% {
+        opacity: 0;
+    }
+    40% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@-webkit-keyframes typing {
+    from {
+        width: 0;
+    }
+}
+@-moz-keyframes typing {
+    from {
+        width: 0;
+    }
+}
+@keyframes typing {
+    from {
+        width: 0;
+    }
+}
+
+@-webkit-keyframes delay-typing {
+    from {
+        width: 0;
+    }
+    to {
+        width: 0;
+    }
+}
+@-moz-keyframes delay-typing {
+    from {
+        width: 0;
+    }
+    to {
+        width: 0;
+    }
+}
+@keyframes delay-typing {
+    from {
+        width: 0;
+    }
+    to {
+        width: 0;
+    }
+}
+
+@-webkit-keyframes fade-in {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+@-moz-keyframes fade-in {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+@keyframes fade-in {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+@-webkit-keyframes fade-out {
+	0% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+	}
+}
+@-moz-keyframes fade-out {
+	0% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+	}
+}
+@keyframes fade-out {
+	from {
+		opacity: 1;
+	}
+	to {
+		opacity: 0;
+	}
+}
