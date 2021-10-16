@@ -1,0 +1,17 @@
+.gitignore
+.gcloudignore
+.gitattributes
+.git
+
+Dockerfile
+docker-compose.yml
+
+.DS_Store
+
+*.md
+
+node_modules
+test
+.history
+
+sacred-flash-329215-*.json

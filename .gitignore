@@ -85,3 +85,6 @@ yarn-debug.log*
 .yarn-integrity
 
 sacred-flash-329215-*.json
+
+/public/assets/*
+!/public/assets/particlesjs/

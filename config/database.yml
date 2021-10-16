@@ -1,8 +1,11 @@
 development:
-  dataset_id: sacred-flash-329215
+  project_id: sacred-flash-329215
+  namespace: portfolio
 
 production:
-  dataset_id: sacred-flash-329215
+  project_id: sacred-flash-329215
+  namespace: portfolio
 
 test:
-  dataset_id: app-test
+  project_id: app-test
+  namespace: portfolio
