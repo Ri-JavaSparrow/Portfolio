@@ -77,3 +77,11 @@ Temporary Items
 
 .history/
 .ruby-version
+/public/packs
+/public/packs-test
+/node_modules
+/yarn-error.log
+yarn-debug.log*
+.yarn-integrity
+
+sacred-flash-329215-*.json

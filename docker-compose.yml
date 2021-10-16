@@ -9,3 +9,5 @@ services:
       - .:/app
     ports:
       - "3000:3000"
+    environment:
+      - DATASTORE_CREDENTIALS=sacred-flash-329215-a6538409556a.json
