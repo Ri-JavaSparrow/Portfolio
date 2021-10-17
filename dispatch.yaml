@@ -1,0 +1,3 @@
+dispatch:
+  - url: portfolio.ri-java-sparrow.dev/*
+    service: portfolio
