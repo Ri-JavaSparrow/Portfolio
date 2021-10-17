@@ -12,12 +12,10 @@
  *
  */
 
- // Custom bootstrap variables must be set or imported *before* bootstrap.
- // *= require_self
- // *= require_tree .
-
+// Custom bootstrap variables must be set or imported *before* bootstrap.
+// *= require_self
+// *= require_tree .
 @import "bootstrap";
-
 @font-face {
     font-family: "SFNSMono";
     src: url('SFNSMono.ttf') format("truetype");
@@ -27,32 +25,37 @@
 
 
 /* ---------------- 定数 ---------------- */
+
 $pc-min-witdh: 1025px; // PC
 $tab-horizontal-max-witdh: 1024px; // タブレット横長
 $tab-vertical-max-witdh: 768px; // タブレット縦長
-$sp-max-witdh: 480px;  // スマホ
-
+$sp-max-witdh: 480px; // スマホ
 $typing-speed: 0.05s;
 $cursor-speed: 1s;
+
 /* ------------------------------- */
 
 
 /* ---------------- mixin ---------------- */
+
 @mixin pc {
     @media (min-width: ($pc-min-witdh)) {
         @content;
     }
 }
+
 @mixin tab-horizontal {
     @media (max-width: ($tab-horizontal-max-witdh)) {
         @content;
     }
 }
+
 @mixin tab-vertical {
     @media (max-width: ($tab-vertical-max-witdh)) {
         @content;
     }
 }
+
 @mixin sp {
     @media (max-width: ($sp-max-witdh)) {
         @content;
@@ -64,44 +67,51 @@ $cursor-speed: 1s;
     -moz-animation: cursor $cursor-speed $delay infinite;
     animation: cursor $cursor-speed $delay infinite;
 }
+
 @mixin terminal-font() {
     font-family: "SFNSMono";
     @include pc {
         font-size: 16px;
-    };
+    }
     @include tab-horizontal {
         font-size: 16px;
-    };
+    }
     @include tab-vertical {
         font-size: 16px;
-    };
+    }
     @include sp {
         font-size: 12px;
-    };
+    }
 }
 
-@mixin fade-in($duration:0s, $delay: 0s, $opacity: 0) {
+@mixin fade-in($duration:0s,
+$delay: 0s,
+$opacity: 0) {
     opacity: $opacity;
     animation: fade-in $duration $delay forwards;
 }
 
-@mixin fade-out($duration:0s, $delay: 0s) {
+@mixin fade-out($duration:0s,
+$delay: 0s) {
     animation: fade-out $duration $delay forwards;
 }
 
-@mixin profile-typing($word-count, $typing-start: 0s) {
+@mixin profile-typing($word-count,
+$typing-start: 0s) {
     width: #{$word-count}ch;
-
     -webkit-animation: delay-typing $typing-start, typing ($typing-speed * $word-count) $typing-start steps($word-count) forwards;
     -moz-animation: delay-typing $typing-start, typing ($typing-speed * $word-count) $typing-start steps($word-count) forwards;
     animation: delay-typing $typing-start, typing ($typing-speed * $word-count) $typing-start steps($word-count) forwards;
 }
+
+
 /* ------------------------------- */
 
-
-html, body {
+html,
+body {
     height: 100%;
 }
+
 .body {
     text-align: center;
 }
@@ -109,11 +119,18 @@ html, body {
 .card-body {
     @include sp {
         padding: 8px;
-    };
+    }
+    ;
+}
+
+.bg-nav-bar {
+    font-family: "SFNSMono";
+    background-color: rgba(4, 46, 97, 0.8);
 }
 
 
 /* ---------------- ターミナル風の表示設定 ---------------- */
+
 .terminal {
     text-align: start;
     background-color: rgba(22, 22, 22, 0.8);
@@ -122,58 +139,56 @@ html, body {
     margin: 0px auto;
     @include pc {
         width: 800px;
-    };
+    }
     @include tab-horizontal {
         width: 600px;
-    };
+    }
     @include tab-vertical {
         width: 100%;
-    };
+    }
     @include sp {
         width: 100%;
-    };
+    }
     @include terminal-font;
-
     // テーブル
     table {
         @include pc {
             margin-bottom: 0.75rem;
-        };
+        }
         @include tab-horizontal {
             margin-bottom: 0.75rem;
-        };
+        }
         @include tab-vertical {
             margin-bottom: 0.75rem;
-        };
+        }
         @include sp {
             margin-bottom: 0.4rem;
-        };
+        }
     }
     table td {
         border-collapse: collapse;
         border-spacing: 0;
         padding: 0;
     }
-    table th, table td {
+    table th,
+    table td {
         @include terminal-font;
         line-height: 1.5;
     }
-
     .card-title {
         @include pc {
             margin-bottom: 0.75rem;
-        };
+        }
         @include tab-horizontal {
             margin-bottom: 0.75rem;
-        };
+        }
         @include tab-vertical {
             margin-bottom: 0.75rem;
-        };
+        }
         @include sp {
             margin-bottom: 0.4rem;
-        };
+        }
     }
-
     // コマンドライン入力の表示設定
     .command-line {
         display: flex;
@@ -192,6 +207,264 @@ html, body {
         white-space: nowrap;
     }
 }
+
+
+/* ------------------------------- */
+
+
+/* ---------------- フッター設定 ---------------- */
+
+#footer {
+    position: relative;
+    margin-top: 40px;
+    color: #fff;
+    font-family: "SFNSMono";
+    text-align: left;
+}
+
+#footer a {
+    text-decoration: none;
+    color: #fff;
+}
+
+#footer a:hover {
+    text-decoration: underline;
+}
+
+#footer .primary {
+    background-color: rgba(26, 26, 26, 0.8);
+    @include pc {
+        padding: 40px 20px;
+    }
+    @include tab-horizontal {
+        padding: 40px 20px;
+    }
+    @include tab-vertical {
+        padding: 20px 20px;
+    }
+    @include sp {
+        padding: 20px 20px;
+    }
+}
+
+#footer .secondary {
+    background-color: rgba(4, 46, 97, 0.8);
+    @include pc {
+        display: flex;
+        padding: 40px 20px;
+    }
+    @include tab-horizontal {
+        display: flex;
+        padding: 40px 20px;
+    }
+    @include tab-vertical {
+        display: block;
+        padding: 20px 20px;
+    }
+    @include sp {
+        display: block;
+        padding: 20px 20px;
+    }
+}
+
+
+/* footer-logo */
+
+#footer .logo {
+    position: relative;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    font-weight: bold;
+    @include pc {
+        font-size: 26px;
+    }
+    @include tab-horizontal {
+        font-size: 26px;
+    }
+    @include tab-vertical {
+        font-size: 16px;
+    }
+    @include sp {
+        font-size: 16px;
+    }
+}
+
+
+/* address */
+
+.address {
+    margin: 10px 0 0;
+    padding: 0;
+    @include tab-vertical {
+        font-size: 12px;
+    }
+    @include sp {
+        font-size: 12px;
+    }
+}
+
+
+/* navi */
+
+.navi-row {
+    @include pc {
+        display: flex;
+        margin-top: 40px;
+    }
+    @include tab-horizontal {
+        display: flex;
+        margin-top: 40px;
+    }
+    @include tab-vertical {
+        display: block;
+        margin-top: 15px;
+    }
+    @include sp {
+        display: block;
+        margin-top: 15px;
+    }
+}
+
+#footer .navi {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    @include tab-vertical {
+        font-size: 12px;
+    }
+    @include sp {
+        font-size: 12px;
+    }
+}
+
+#footer .navi li {
+    display: inline-block;
+    margin: 0 20px 0 0;
+    padding: 0;
+    @include tab-vertical {
+        margin-top: 5px;
+        font-size: 12px;
+    }
+    @include sp {
+        margin-top: 5px;
+        font-size: 12px;
+    }
+}
+
+#footer .navi li:first-child {
+    margin-left: 0;
+}
+
+
+/* sns-navi */
+
+#footer .sns-navi {
+    @include pc {
+        margin: 0 0 0 auto;
+        padding: 0;
+    }
+    @include tab-horizontal {
+        margin: 0 0 0 auto;
+        padding: 0;
+    }
+    @include tab-vertical {
+        margin: 20px 0 0;
+        padding: 0;
+    }
+    @include sp {
+        margin: 20px 0 0;
+        padding: 0;
+    }
+}
+
+#footer .sns-navi li {
+    display: inline-block;
+    margin: 0 20px 0 0;
+    padding: 0;
+    @include pc {
+        font-size: 20px;
+    }
+    @include tab-horizontal {
+        font-size: 20px;
+    }
+    @include tab-vertical {
+        font-size: 18px;
+    }
+    @include sp {
+        font-size: 18px;
+    }
+}
+
+#footer .sns-navi li:last-child {
+    margin-right: 0;
+}
+
+
+/* sitenavi */
+
+#footer .sitenavi {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    @include pc {
+        width: 50%;
+    }
+    @include tab-horizontal {
+        width: 50%;
+    }
+    @include tab-vertical {
+        width: 100%;
+        text-align: center;
+        font-size: 12px;
+    }
+    @include sp {
+        width: 100%;
+        text-align: center;
+        font-size: 12px;
+    }
+}
+
+#footer .sitenavi li {
+    display: inline-block;
+    margin: 0 0 0 20px;
+    padding: 0;
+}
+
+#footer .sitenavi li:first-child {
+    margin-left: 0;
+}
+
+
+/* copyright */
+
+#footer .copyright {
+    padding: 0;
+    @include pc {
+        width: 100%;
+        margin: 0;
+        text-align: right;
+    }
+    @include tab-horizontal {
+        width: 100%;
+        margin: 0;
+        text-align: right;
+    }
+    @include tab-vertical {
+        width: 100%;
+        margin: 20px 0 0;
+        text-align: center;
+        font-size: 12px;
+    }
+    @include sp {
+        width: 100%;
+        margin: 20px 0 0;
+        text-align: center;
+        font-size: 12px;
+    }
+}
+
+
 /* ------------------------------- */
 
 @-webkit-keyframes cursor {
@@ -211,6 +484,7 @@ html, body {
         opacity: 0;
     }
 }
+
 @-moz-keyframes cursor {
     0% {
         opacity: 0;
@@ -228,6 +502,7 @@ html, body {
         opacity: 0;
     }
 }
+
 @keyframes cursor {
     0% {
         opacity: 0;
@@ -251,11 +526,13 @@ html, body {
         width: 0;
     }
 }
+
 @-moz-keyframes typing {
     from {
         width: 0;
     }
 }
+
 @keyframes typing {
     from {
         width: 0;
@@ -270,6 +547,7 @@ html, body {
         width: 0;
     }
 }
+
 @-moz-keyframes delay-typing {
     from {
         width: 0;
@@ -278,6 +556,7 @@ html, body {
         width: 0;
     }
 }
+
 @keyframes delay-typing {
     from {
         width: 0;
@@ -288,51 +567,55 @@ html, body {
 }
 
 @-webkit-keyframes fade-in {
-	0% {
-		opacity: 0;
-	}
-	100% {
-		opacity: 1;
-	}
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }
+
 @-moz-keyframes fade-in {
-	0% {
-		opacity: 0;
-	}
-	100% {
-		opacity: 1;
-	}
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }
+
 @keyframes fade-in {
-	from {
-		opacity: 0;
-	}
-	to {
-		opacity: 1;
-	}
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 @-webkit-keyframes fade-out {
-	0% {
-		opacity: 1;
-	}
-	100% {
-		opacity: 0;
-	}
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
 }
+
 @-moz-keyframes fade-out {
-	0% {
-		opacity: 1;
-	}
-	100% {
-		opacity: 0;
-	}
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
 }
+
 @keyframes fade-out {
-	from {
-		opacity: 1;
-	}
-	to {
-		opacity: 0;
-	}
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
 }

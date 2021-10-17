@@ -1,29 +1,43 @@
-typedElemList = [];
+// 画面のスクロールに合わせてコンテンツを表示する処理
+const targetIdList = [
+    'profile',
+    'language-skills',
+    'framework-skills'
+];
+var index = 0;
 
 $(window).on('load scroll', () => {
-    // animatedのclassを持った要素をセレクタに指定
-    var elems = $('.animated');
-    var typedCursorElems = $('.animated.typed .fade-in .profile-cursor');
-
-    for (var index = 0; index < elems.length; index++) {
-        var elem = elems[index];
-        if (!typedElemList.includes(elem.id)) {
-            // data属性からアニメーション名を取得
-            var isAnimate = $(elem).data('animate');
-            // animated要素に位置を取得
-            var elemOffset = $(elem).offset().top;
-            // 現在のスクロールポジションを取得
-            var scrollPos = $(window).scrollTop();
-            // ウィンドウの高さを取得
-            var wh = $(window).height();
-
-            // animated要素がウィンドウ内の中央位置にきたら処理
-            if (scrollPos > elemOffset - wh + (wh / 2)) {
-                $(elem).addClass(isAnimate);
-                typedElemList.push(elem.id);
-
-                typedCursorElems.eq(index - 1).addClass('after');
-            }
-        }
+    if (index >= targetIdList.length) {
+        return;
     }
+
+    var id = '#' + targetIdList[index];
+    var elem = $(id);
+    var typedCursorElems = $('.typed .fade-in .profile-cursor');
+
+    // data属性からアニメーション名を取得
+    var isAnimate = $(elem).data('animate');
+    // 要素の位置を取得
+    var elemOffset = $(elem).offset().top;
+    // 現在のスクロールポジションを取得
+    var scrollPos = $(window).scrollTop();
+    // ウィンドウの高さを取得
+    var wh = $(window).height();
+
+    // 要素がウィンドウ内の中央位置にきたら処理
+    if (scrollPos > elemOffset - wh + (wh / 2)) {
+        $(elem).addClass(isAnimate);
+
+        if (index - 1 >= 0) {
+            typedCursorElems.eq(index - 1).addClass('after');
+        }
+
+        index++;
+    }
+});
+
+
+// リロードしたらページトップに戻す
+$(function() {
+    $('html,body').animate({ scrollTop: 0 }, '1');
 });

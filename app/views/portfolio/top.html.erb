@@ -7,9 +7,9 @@
     <div class="card terminal">
         <div class="card-body">
             <%# プロフィール %>
-            <div id="profile" class="animated" data-animate="typed">
+            <div id="profile" data-animate="typed">
                 <div class="card-title command-line">
-                    ri$&nbsp;<span class="typing profile-typing">cat profile</span><span class="profile-cursor before">_</span>
+                    $&nbsp;<span class="typing profile-typing">cat profile</span><span class="profile-cursor before">_</span>
                 </div>
                 <div class="fade-in">
                     <table>
@@ -23,7 +23,7 @@
                         </tr>
                         <tr>
                             <td class="profile-title">BIRTHDAY:</td>
-                            <td><%= @user['birthday'] %></td>
+                            <td><%= @user['birthdayText'] %></td>
                         </tr>
                         <tr>
                             <td class="profile-title">AREA:</td>
@@ -34,26 +34,30 @@
                             <td><%= @user['like'] %></td>
                         </tr>
                         <tr>
-                            <td class="profile-title">PROFILE:</td>
-                            <td class="profile-text"><%= @user['profile'] %></td>
+                            <td class="profile-title">HOBBY:</td>
+                            <td><%= @user['hobby'] %></td>
+                        </tr>
+                        <tr>
+                            <td class="profile-title"><br>PROFILE:</td>
+                            <td class="profile-text"><br><%= @user['profile'] %></td>
                         </tr>
                     </table>
                     <div class="card-title command-line">
-                        ri$&nbsp;<span class="profile-cursor">_</span>
+                        $&nbsp;<span class="profile-cursor">_</span>
                     </div>
                 </div>
             </div>
 
             <%# 言語スキル一覧 %>
-            <div id="language-skills" class="animated" data-animate="typed">
+            <div id="language-skills" data-animate="typed">
                 <div class="card-title command-line line1">
-                    ri$&nbsp;<span class="profile-cursor before">_</span>
+                    $&nbsp;<span class="profile-cursor before">_</span>
                 </div>
                 <div class="card-title command-line line2">
-                    ri$&nbsp;<span class="profile-cursor before">_</span>
+                    $&nbsp;<span class="profile-cursor before">_</span>
                 </div>
                 <div class="card-title command-line line3">
-                    ri$&nbsp;<span class="typing profile-typing">ls -l language.skills</span><span class="profile-cursor before">_</span>
+                    $&nbsp;<span class="typing profile-typing">ls -l language.skills</span><span class="profile-cursor before">_</span>
                 </div>
                 <div class="fade-in">
                     <table>
@@ -66,15 +70,15 @@
                         <% end %>
                     </table>
                     <div class="card-title command-line">
-                        ri$&nbsp;<span class="profile-cursor">_</span>
+                        $&nbsp;<span class="profile-cursor">_</span>
                     </div>
                 </div>
             </div>
 
             <%# フレームワークスキル一覧 %>
-            <div id="framework-skills" class="animated" data-animate="typed">
+            <div id="framework-skills" data-animate="typed">
                 <div class="card-title command-line">
-                    ri$&nbsp;<span class="typing profile-typing">ls -l framework.skills</span><span class="profile-cursor before">_</span>
+                    $&nbsp;<span class="typing profile-typing">ls -l framework.skills</span><span class="profile-cursor before">_</span>
                 </div>
                 <div class="fade-in">
                     <table>
@@ -87,7 +91,7 @@
                         <% end %>
                     </table>
                     <div class="card-title command-line">
-                        ri$&nbsp;<span class="profile-cursor">_</span>
+                        $&nbsp;<span class="profile-cursor">_</span>
                     </div>
                 </div>
             </div>
