@@ -114,6 +114,10 @@ $framework-skills-view-delay: 1.5s;
             @include title;
         }
 
+        .profile-text {
+            white-space: pre-wrap;
+        }
+
         .profile-cursor {
             @include profile-cursor($profile-view-delay);
         }
@@ -190,7 +194,7 @@ $framework-skills-view-delay: 1.5s;
 
         .framework-skills-title {
             font-weight: bold;
-            @include title(120px, 120px, 120px, 90px);
+            @include title;
         }
 
         .profile-cursor {

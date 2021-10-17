@@ -2,27 +2,6 @@
 
 <div class="contents">
     <h1 class="text-white">Portfolio#top</h1>
-    <h1 class="text-white">Portfolio#top</h1>
-    <h1 class="text-white">Portfolio#top</h1>
-    <h1 class="text-white">Portfolio#top</h1>
-    <h1 class="text-white">Portfolio#top</h1>
-    <h1 class="text-white">Portfolio#top</h1>
-    <h1 class="text-white">Portfolio#top</h1>
-    <h1 class="text-white">Portfolio#top</h1>
-    <h1 class="text-white">Portfolio#top</h1>
-    <h1 class="text-white">Portfolio#top</h1>
-    <h1 class="text-white">Portfolio#top</h1>
-    <h1 class="text-white">Portfolio#top</h1>
-    <h1 class="text-white">Portfolio#top</h1>
-    <h1 class="text-white">Portfolio#top</h1>
-    <h1 class="text-white">Portfolio#top</h1>
-    <h1 class="text-white">Portfolio#top</h1>
-    <h1 class="text-white">Portfolio#top</h1>
-    <h1 class="text-white">Portfolio#top</h1>
-    <h1 class="text-white">Portfolio#top</h1>
-    <h1 class="text-white">Portfolio#top</h1>
-    <h1 class="text-white">Portfolio#top</h1>
-    <h1 class="text-white">Portfolio#top</h1>
     <p class="text-white">Find me in app/views/portfolio/top.html.erb</p>
 
     <div class="card terminal">
@@ -36,33 +15,27 @@
                     <table>
                         <tr>
                             <td class="profile-title">REAL_NAME:</td>
-                            <td>千葉親理</td>
+                            <td><%= @user['realName'] %></td>
                         </tr>
                         <tr>
                             <td class="profile-title">HANDLE_NAME:</td>
-                            <td>Ri</td>
+                            <td><%= @user['handleName'] %></td>
                         </tr>
                         <tr>
                             <td class="profile-title">BIRTHDAY:</td>
-                            <td>1997年3月25日</td>
+                            <td><%= @user['birthday'] %></td>
                         </tr>
                         <tr>
                             <td class="profile-title">AREA:</td>
-                            <td>神奈川県</td>
+                            <td><%= @user['area'] %></td>
                         </tr>
                         <tr>
                             <td class="profile-title">LIKE:</td>
-                            <td>C#、Python</td>
+                            <td><%= @user['like'] %></td>
                         </tr>
                         <tr>
                             <td class="profile-title">PROFILE:</td>
-                            <td>
-                                茨城で育ち、就職を機に神奈川に出てきました。<br>
-                                高校生の時にMacBook Proを買ってもらったことで「ゲームを作ってみたい」と思い、プログラミングの世界に足を踏み入れてからは趣味の範囲で色々作って試してはを繰り返しています。<br>
-                                <br>
-                                就職してからはスマホアプリ、フロントエンド、バックエンド開発を中心に担当しました。<br>
-                                最近は AI や IT×金融 に興味あり...。
-                            </td>
+                            <td class="profile-text"><%= @user['profile'] %></td>
                         </tr>
                     </table>
                     <div class="card-title command-line">
@@ -84,81 +57,13 @@
                 </div>
                 <div class="fade-in">
                     <table>
-                        <tr>
-                            <td class="language-skills-title">C#</td>
-                            <td class="advanced">上級（2年）</td>
-                            <td>指導可能。</td>
-                        </tr>
-                        <tr>
-                            <td class="language-skills-title">C++</td>
-                            <td class="beginner">初級（2ヶ月）</td>
-                            <td>調べながらであれば。</td>
-                        </tr>
-                        <tr>
-                            <td class="language-skills-title">Python</td>
-                            <td class="advanced">上級（2年）</td>
-                            <td>指導可能。</td>
-                        </tr>
-                        <tr>
-                            <td class="language-skills-title">Swift</td>
-                            <td class="beginner">初級（4ヶ月）</td>
-                            <td>調べながらであれば。</td>
-                        </tr>
-                        <tr>
-                            <td class="language-skills-title">Java</td>
-                            <td class="intermediate">中級（4ヶ月）</td>
-                            <td>通常使用に問題なし。</td>
-                        </tr>
-                        <tr>
-                            <td class="language-skills-title">Javascript</td>
-                            <td class="advanced">上級（3年）</td>
-                            <td>指導可能。</td>
-                        </tr>
-                        <tr>
-                            <td class="language-skills-title">HTML</td>
-                            <td class="intermediate">中級（2年）</td>
-                            <td>通常使用に問題なし。</td>
-                        </tr>
-                        <tr>
-                            <td class="language-skills-title">CSS</td>
-                            <td class="intermediate">中級（2年）</td>
-                            <td>通常使用に問題なし。</td>
-                        </tr>
-                        <tr>
-                            <td class="language-skills-title">SCSS</td>
-                            <td class="beginner">初級（1ヶ月）</td>
-                            <td>個人開発で使用。</td>
-                        </tr>
-                        <tr>
-                            <td class="language-skills-title">PHP</td>
-                            <td class="beginner">初級（1年）</td>
-                            <td>個人開発で使用。</td>
-                        </tr>
-                        <tr>
-                            <td class="language-skills-title">Bash</td>
-                            <td class="beginner">初級（1年）</td>
-                            <td>調べながらであれば。</td>
-                        </tr>
-                        <tr>
-                            <td class="language-skills-title">Dart</td>
-                            <td class="intermediate">中級（1年）</td>
-                            <td>個人開発で使用。</td>
-                        </tr>
-                        <tr>
-                            <td class="language-skills-title">Groovy</td>
-                            <td class="beginner">初級（1年）</td>
-                            <td>調べながらであれば。</td>
-                        </tr>
-                        <tr>
-                            <td class="language-skills-title">OCaml</td>
-                            <td class="beginner">初級（1年）</td>
-                            <td>大学で使用。</td>
-                        </tr>
-                        <tr>
-                            <td class="language-skills-title">TypeScript</td>
-                            <td class="beginner">初級（4ヶ月）</td>
-                            <td>調べながらであれば。</td>
-                        </tr>
+                        <% @languages.each do |language| %>
+                            <tr>
+                                <td class="language-skills-title"><%= language['name'] %></td>
+                                <td class="<%= language['levelType'] %>"><%= language['level'] %></td>
+                                <td><%= language['detail'] %></td>
+                            </tr>
+                        <% end %>
                     </table>
                     <div class="card-title command-line">
                         ri$&nbsp;<span class="profile-cursor">_</span>
@@ -173,46 +78,13 @@
                 </div>
                 <div class="fade-in">
                     <table>
-                        <tr>
-                            <td class="language-skills-title">Xamarin.Forms</td>
-                            <td class="advanced">上級（2年）</td>
-                            <td>指導可能。</td>
-                        </tr>
-                        <tr>
-                            <td class="language-skills-title">Xamarin.Mac</td>
-                            <td class="beginner">初級（2年）</td>
-                            <td>個人開発で使用。</td>
-                        </tr>
-                        <tr>
-                            <td class="language-skills-title">Django</td>
-                            <td class="intermediate">中級（2年）</td>
-                            <td>通常使用に問題なし。</td>
-                        </tr>
-                        <tr>
-                            <td class="language-skills-title">Flask</td>
-                            <td class="intermediate">中級（2年）</td>
-                            <td>通常使用に問題なし。</td>
-                        </tr>
-                        <tr>
-                            <td class="language-skills-title">Vue.js</td>
-                            <td class="intermediate">中級（4ヶ月）</td>
-                            <td>通常使用に問題なし。</td>
-                        </tr>
-                        <tr>
-                            <td class="language-skills-title">React</td>
-                            <td class="beginner">初級（4ヶ月）</td>
-                            <td>調べながらであれば。</td>
-                        </tr>
-                        <tr>
-                            <td class="language-skills-title">Flutter</td>
-                            <td class="beginner">初級（1年）</td>
-                            <td>個人開発で使用。</td>
-                        </tr>
-                        <tr>
-                            <td class="language-skills-title">Ruby on Rails</td>
-                            <td class="beginner">初級（1年）</td>
-                            <td>個人開発で使用。</td>
-                        </tr>
+                        <% @frameworks.each do |framework| %>
+                            <tr>
+                                <td class="framework-skills-title"><%= framework['name'] %></td>
+                                <td class="<%= framework['levelType'] %>"><%= framework['level'] %></td>
+                                <td><%= framework['detail'] %></td>
+                            </tr>
+                        <% end %>
                     </table>
                     <div class="card-title command-line">
                         ri$&nbsp;<span class="profile-cursor">_</span>
@@ -221,25 +93,4 @@
             </div>
         </div>
     </div>
-
-    <h1 class="text-white">Portfolio#top</h1>
-    <h1 class="text-white">Portfolio#top</h1>
-    <h1 class="text-white">Portfolio#top</h1>
-    <h1 class="text-white">Portfolio#top</h1>
-    <h1 class="text-white">Portfolio#top</h1>
-    <h1 class="text-white">Portfolio#top</h1>
-    <h1 class="text-white">Portfolio#top</h1>
-    <h1 class="text-white">Portfolio#top</h1>
-    <h1 class="text-white">Portfolio#top</h1>
-    <h1 class="text-white">Portfolio#top</h1>
-    <h1 class="text-white">Portfolio#top</h1>
-    <h1 class="text-white">Portfolio#top</h1>
-    <h1 class="text-white">Portfolio#top</h1>
-    <h1 class="text-white">Portfolio#top</h1>
-    <h1 class="text-white">Portfolio#top</h1>
-    <h1 class="text-white">Portfolio#top</h1>
-    <h1 class="text-white">Portfolio#top</h1>
-    <h1 class="text-white">Portfolio#top</h1>
-    <h1 class="text-white">Portfolio#top</h1>
-    <h1 class="text-white">Portfolio#top</h1>
 </div>
