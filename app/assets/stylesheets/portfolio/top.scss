@@ -16,15 +16,25 @@ $profile-word-count: 11;
 $profile-view-delay: 1s;
 // language-skills
 $language-skills-word-count: 21;
-$language-skills-view1-delay: 0.2s;
-$language-skills-view2-start: $language-skills-view1-delay;
-$language-skills-view2-delay: $language-skills-view2-start+0.2s;
-$language-skills-view3-start: $language-skills-view2-delay;
-$language-skills-view3-typing-start: $language-skills-view3-start+0.3s;
-$language-skills-view3-delay: $language-skills-view3-typing-start+1.5s;
+$language-skills-view-delay: 1.5s;
 // framework-skills
 $framework-skills-word-count: 22;
-$framework-skills-view-delay: 1.5s;
+$framework-skills-view1-delay: 0.2s;
+$framework-skills-view2-start: $framework-skills-view1-delay;
+$framework-skills-view2-typing-start: $framework-skills-view2-start+0.3s;
+$framework-skills-view2-delay: $framework-skills-view2-typing-start+1.5s;
+// database-skills
+$database-skills-word-count: 21;
+$database-skills-view1-delay: 0.2s;
+$database-skills-view2-start: $database-skills-view1-delay;
+$database-skills-view2-typing-start: $database-skills-view2-start+0.3s;
+$database-skills-view2-delay: $database-skills-view2-typing-start+1.5s;
+// other-skills
+$other-skills-word-count: 18;
+$other-skills-view1-delay: 0.2s;
+$other-skills-view2-start: $other-skills-view1-delay;
+$other-skills-view2-typing-start: $other-skills-view2-start+0.3s;
+$other-skills-view2-delay: $other-skills-view2-typing-start+1.3s;
 
 /* ------------------------------- */
 
@@ -89,9 +99,17 @@ $framework-skills-view-delay: 1.5s;
         padding: 10px;
     }
     @include sp {
-        margin-top: 40px;
         padding: 10px 0;
     }
+}
+
+.message-box {
+    width: 100%;
+    height: 10rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 
@@ -109,7 +127,7 @@ $framework-skills-view-delay: 1.5s;
         }
         .profile-title {
             color: rgb(114, 81, 206);
-            @include title;
+            @include title(120px, 120px, 120px, 90px);
         }
         .profile-text {
             white-space: pre-wrap;
@@ -146,33 +164,16 @@ $framework-skills-view-delay: 1.5s;
     &.typed {
         opacity: 1;
         .profile-typing {
-            @include profile-typing($language-skills-word-count, $typing-start: $language-skills-view3-typing-start);
+            @include profile-typing($language-skills-word-count);
         }
         .fade-in {
-            @include fade-in($delay: $language-skills-view3-delay);
+            @include fade-in($delay: $language-skills-view-delay);
         }
         .language-skills-title {
-            @include title(120px, 120px, 120px, 90px);
-        }
-        .line1 {
-            .profile-cursor {
-                @include profile-cursor($language-skills-view1-delay);
-            }
-        }
-        .line2 {
-            @include fade-in($delay: $language-skills-view2-start);
-            .profile-cursor {
-                @include profile-cursor($language-skills-view2-delay);
-            }
-        }
-        .line3 {
-            @include fade-in($delay: $language-skills-view3-start);
-            .profile-cursor {
-                @include profile-cursor($language-skills-view3-delay);
-            }
+            @include title($tab-horizontal: 120px, $tab-vertical: 120px, $sp: 90px);
         }
         .profile-cursor {
-            @include profile-cursor($language-skills-view3-delay);
+            @include profile-cursor($language-skills-view-delay);
         }
     }
 }
@@ -182,16 +183,87 @@ $framework-skills-view-delay: 1.5s;
     &.typed {
         opacity: 1;
         .profile-typing {
-            @include profile-typing($framework-skills-word-count);
+            @include profile-typing($framework-skills-word-count, $typing-start: $framework-skills-view2-typing-start);
         }
         .fade-in {
-            @include fade-in($delay: $framework-skills-view-delay);
+            @include fade-in($delay: $framework-skills-view2-delay);
         }
         .framework-skills-title {
             @include title;
         }
+        .line1 {
+            .profile-cursor {
+                @include profile-cursor($framework-skills-view1-delay);
+            }
+        }
+        .line2 {
+            @include fade-in($delay: $framework-skills-view2-start);
+            .profile-cursor {
+                @include profile-cursor($framework-skills-view2-delay);
+            }
+        }
         .profile-cursor {
-            @include profile-cursor($framework-skills-view-delay);
+            @include profile-cursor($framework-skills-view2-delay);
+        }
+    }
+}
+
+#database-skills {
+    opacity: 0;
+    &.typed {
+        opacity: 1;
+        .profile-typing {
+            @include profile-typing($database-skills-word-count, $typing-start: $database-skills-view2-typing-start);
+        }
+        .fade-in {
+            @include fade-in($delay: $database-skills-view2-delay);
+        }
+        .database-skills-title {
+            @include title;
+        }
+        .line1 {
+            .profile-cursor {
+                @include profile-cursor($database-skills-view1-delay);
+            }
+        }
+        .line2 {
+            @include fade-in($delay: $database-skills-view2-start);
+            .profile-cursor {
+                @include profile-cursor($database-skills-view2-delay);
+            }
+        }
+        .profile-cursor {
+            @include profile-cursor($database-skills-view2-delay);
+        }
+    }
+}
+
+#other-skills {
+    opacity: 0;
+    &.typed {
+        opacity: 1;
+        .profile-typing {
+            @include profile-typing($other-skills-word-count, $typing-start: $other-skills-view2-typing-start);
+        }
+        .fade-in {
+            @include fade-in($delay: $other-skills-view2-delay);
+        }
+        .other-skills-title {
+            @include title;
+        }
+        .line1 {
+            .profile-cursor {
+                @include profile-cursor($other-skills-view1-delay);
+            }
+        }
+        .line2 {
+            @include fade-in($delay: $other-skills-view2-start);
+            .profile-cursor {
+                @include profile-cursor($other-skills-view2-delay);
+            }
+        }
+        .profile-cursor {
+            @include profile-cursor($other-skills-view2-delay);
         }
     }
 }

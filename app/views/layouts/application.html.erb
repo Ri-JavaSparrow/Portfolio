@@ -15,17 +15,40 @@
     <div class="bg-nav-bar d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 border-bottom shadow-sm fixed-top">
       <h3 class="my-0 mr-md-auto font-weight-normal text-white">Ri Portfolio</h5>
       <nav class="my-2 my-md-0 mr-md-3">
-        <a class="p-2 text-white" href="#">Profile</a>
-        <a class="p-2 text-white" href="#">Skills</a>
-        <a class="p-2 text-white" href="#">Works</a>
-        <a class="p-2 text-white" href="#">Contact</a>
+        <% navigations.each do |navigation| %>
+          <a id="<%= navigation[:id] %>" class="p-2 text-white <%= navigation[:class] %>" href="<%= navigation[:link] %>"><%= navigation[:name] %></a>
+        <% end %> 
       </nav>
     </div>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <p class="alert"><%= alert %></p>
+    <div class="contents-margin"></div>
 
     <%= yield %>
+
+    <footer id="footer">
+      <section class="primary">
+        <p class="logo"><a href="#">Ri</a></p>
+        <p class="address">
+          EMAIL: <a href="mailto:live.things.work&#64;gmail.com">live.things.work@gmail.com</a>
+        </p>
+        <div class="navi-row">
+          <ul class="sns-navi">
+            <li>
+              <a href="https://github.com/ri-chiba" target="_blank" rel="noopener noreferrer">
+                <i class="fa fa-github fa-2x"></i>
+              </a>
+            </li>
+            <li>
+              <a href="https://twitter.com/ri_programmer" target="_blank" rel="noopener noreferrer">
+                <i class="fa fa-twitter fa-2x"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </section>
+      <section class="secondary">
+        <p class="copyright">Copyright 2021 Ri.</p>
+      </section>
+    </footer>
 
     <script src="https://use.fontawesome.com/2eabbec088.js"></script>
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
@@ -35,48 +58,4 @@
       });
     </script>
   </body>
-
-  <footer id="footer">
-    <section class="primary">
-      <p class="logo"><a href="#">Ri</a></p>
-      <p class="address">
-        EMAIL: <a href="mailto:live.things.work&#64;gmail.com">live.things.work@gmail.com</a>
-      </p>
-      <div class="navi-row">
-        <%
-=begin%>
-<ul class="navi">
-          <li><a href="#">Profile</a></li>
-          <li><a href="#">Skills</a></li>
-          <li><a href="#">Works</a></li>
-          <li><a href="#">Contact</a></li>
-        </ul> 
-<%
-=end%>
-        <ul class="sns-navi">
-          <li>
-            <a href="https://github.com/ri-chiba" target="_blank" rel="noopener noreferrer">
-              <i class="fa fa-github fa-2x"></i>
-            </a>
-          </li>
-          <li>
-            <a href="https://twitter.com/ri_programmer" target="_blank" rel="noopener noreferrer">
-              <i class="fa fa-twitter fa-2x"></i>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </section>
-    <section class="secondary">
-      <%
-=begin%>
- <ul class="sitenavi">
-        <li><a href="#">サイトマップ</a></li>
-        <li><a href="#">プライバシーポリシー</a></li>
-      </ul> 
-<%
-=end%>
-      <p class="copyright">Copyright 2021 Ri.</p>
-    </section>
-  </footer>
 </html>

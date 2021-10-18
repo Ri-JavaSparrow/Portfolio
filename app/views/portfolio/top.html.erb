@@ -1,11 +1,24 @@
 <div id="particles-js"></div> 
 
 <div class="contents">
-    <h1 class="text-white">Portfolio#top</h1>
-    <p class="text-white">Find me in app/views/portfolio/top.html.erb</p>
+    <div class="message-box">
+        <h1 class="text-white">Introduction</h1>
+        <p class="text-white">Hi! My name is Ri.</p>
+    </div>
 
-    <div class="card terminal">
+    <div id="profile-terminal" class="card terminal">
+        <div class="fake-menu-bar">
+            <div class="fake-button finish"></div>
+            <div class="fake-button minimize"></div>
+            <div class="fake-button zoom"></div>
+            <div class="menu-bar-title">
+                <img src="assets/folder_icon.png" class="folder-icon" />portfolio ー -bash ー <span class="size"></span>
+            </div>
+        </div>
         <div class="card-body">
+            <div class="card-title command-line first">
+                $&nbsp;<span class="profile-cursor">_</span>
+            </div>
             <%# プロフィール %>
             <div id="profile" data-animate="typed">
                 <div class="card-title command-line">
@@ -18,8 +31,8 @@
                             <td><%= @user['realName'] %></td>
                         </tr>
                         <tr>
-                            <td class="profile-title">HANDLE_NAME:</td>
-                            <td><%= @user['handleName'] %></td>
+                            <td class="profile-title">HN:</td>
+                            <td><%= @user['screenName'] %></td>
                         </tr>
                         <tr>
                             <td class="profile-title">BIRTHDAY:</td>
@@ -42,21 +55,35 @@
                             <td class="profile-text"><br><%= @user['profile'] %></td>
                         </tr>
                     </table>
-                    <div class="card-title command-line">
+                    <div class="card-title command-line last">
                         $&nbsp;<span class="profile-cursor">_</span>
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
 
+    <div class="message-box">
+        <h1 class="text-white">About</h1>
+        <p class="text-white">This page is a ri's portfolio as a developer.</p>
+    </div>
+
+    <div id="skills-terminal" class="card terminal">
+        <div class=fake-menu-bar>
+            <div class="fake-button finish"></div>
+            <div class="fake-button minimize"></div>
+            <div class="fake-button zoom"></div>
+            <div class="menu-bar-title">
+                <img src="assets/folder_icon.png" class="folder-icon" />skills ー -bash ー <span class="size"></span>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="card-title command-line first">
+                $&nbsp;<span class="profile-cursor">_</span>
+            </div>
             <%# 言語スキル一覧 %>
             <div id="language-skills" data-animate="typed">
-                <div class="card-title command-line line1">
-                    $&nbsp;<span class="profile-cursor before">_</span>
-                </div>
-                <div class="card-title command-line line2">
-                    $&nbsp;<span class="profile-cursor before">_</span>
-                </div>
-                <div class="card-title command-line line3">
+                <div id="skills" class="card-title command-line">
                     $&nbsp;<span class="typing profile-typing">ls -l language.skills</span><span class="profile-cursor before">_</span>
                 </div>
                 <div class="fade-in">
@@ -77,7 +104,10 @@
 
             <%# フレームワークスキル一覧 %>
             <div id="framework-skills" data-animate="typed">
-                <div class="card-title command-line">
+                <div class="card-title command-line line1">
+                    $&nbsp;<span class="profile-cursor before">_</span>
+                </div>
+                <div class="card-title command-line line2">
                     $&nbsp;<span class="typing profile-typing">ls -l framework.skills</span><span class="profile-cursor before">_</span>
                 </div>
                 <div class="fade-in">
@@ -91,6 +121,54 @@
                         <% end %>
                     </table>
                     <div class="card-title command-line">
+                        $&nbsp;<span class="profile-cursor">_</span>
+                    </div>
+                </div>
+            </div>
+
+            <%# DBスキル一覧 %>
+            <div id="database-skills" data-animate="typed">
+                <div class="card-title command-line line1">
+                    $&nbsp;<span class="profile-cursor before">_</span>
+                </div>
+                <div class="card-title command-line line2">
+                    $&nbsp;<span class="typing profile-typing">ls -l database.skills</span><span class="profile-cursor before">_</span>
+                </div>
+                <div class="fade-in">
+                    <table>
+                        <% @databases.each do |database| %>
+                            <tr>
+                                <td class="database-skills-title"><%= database['name'] %></td>
+                                <td class="<%= database['levelType'] %>"><%= database['level'] %></td>
+                                <td><%= database['detail'] %></td>
+                            </tr>
+                        <% end %>
+                    </table>
+                    <div class="card-title command-line">
+                        $&nbsp;<span class="profile-cursor">_</span>
+                    </div>
+                </div>
+            </div>
+
+            <%# その他スキル一覧 %>
+            <div id="other-skills" data-animate="typed">
+                <div class="card-title command-line line1">
+                    $&nbsp;<span class="profile-cursor before">_</span>
+                </div>
+                <div class="card-title command-line line2">
+                    $&nbsp;<span class="typing profile-typing">ls -l other.skills</span><span class="profile-cursor before">_</span>
+                </div>
+                <div class="fade-in">
+                    <table>
+                        <% @others.each do |other| %>
+                            <tr>
+                                <td class="other-skills-title"><%= other['name'] %></td>
+                                <td class="<%= other['levelType'] %>"><%= other['level'] %></td>
+                                <td><%= other['detail'] %></td>
+                            </tr>
+                        <% end %>
+                    </table>
+                    <div class="card-title command-line last">
                         $&nbsp;<span class="profile-cursor">_</span>
                     </div>
                 </div>

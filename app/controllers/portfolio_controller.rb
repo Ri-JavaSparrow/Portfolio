@@ -3,8 +3,10 @@ require "date"
 class PortfolioController < ApplicationController
   def top
     @user = User.get
-    @languages = Language.all
-    @frameworks = Framework.all
+    @languages = Skills::Language.all
+    @frameworks = Skills::Framework.all
+    @databases = Skills::Database.all
+    @others = Skills::Other.all
 
     # 誕生日と年齢のフォーマットを整形する
     birthday = @user['birthday'].in_time_zone('Tokyo')
