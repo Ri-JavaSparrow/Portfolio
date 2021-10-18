@@ -519,7 +519,7 @@ body {
             }
             @include sp {
                 height: 48px;
-                margin-top: 9px;
+                margin-top: 10px;
                 margin-left: 10px;
                 &.left {
                     margin-left: 46px;
@@ -744,9 +744,9 @@ body {
 }
 
 
-/* address */
+/* link */
 
-.address {
+.link {
     margin: 10px 0 0;
     padding: 0;
     @include tab-vertical {

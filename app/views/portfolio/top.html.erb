@@ -87,7 +87,7 @@
             <%# 言語スキル一覧 %>
             <div id="language-skills" data-animate="typed">
                 <div id="skills" class="card-title command-line">
-                    $&nbsp;<span class="typing profile-typing">ls -l language</span><span class="profile-cursor before">_</span>
+                    $&nbsp;<span class="typing profile-typing">ls -l language/</span><span class="profile-cursor before">_</span>
                 </div>
                 <div class="fade-in">
                     <table>
@@ -111,7 +111,7 @@
                     $&nbsp;<span class="profile-cursor before">_</span>
                 </div>
                 <div class="card-title command-line line2">
-                    $&nbsp;<span class="typing profile-typing">ls -l framework</span><span class="profile-cursor before">_</span>
+                    $&nbsp;<span class="typing profile-typing">ls -l framework/</span><span class="profile-cursor before">_</span>
                 </div>
                 <div class="fade-in">
                     <table>
@@ -135,7 +135,7 @@
                     $&nbsp;<span class="profile-cursor before">_</span>
                 </div>
                 <div class="card-title command-line line2">
-                    $&nbsp;<span class="typing profile-typing">ls -l database</span><span class="profile-cursor before">_</span>
+                    $&nbsp;<span class="typing profile-typing">ls -l database/</span><span class="profile-cursor before">_</span>
                 </div>
                 <div class="fade-in">
                     <table>
@@ -159,7 +159,7 @@
                     $&nbsp;<span class="profile-cursor before">_</span>
                 </div>
                 <div class="card-title command-line line2">
-                    $&nbsp;<span class="typing profile-typing">ls -l other</span><span class="profile-cursor before">_</span>
+                    $&nbsp;<span class="typing profile-typing">ls -l other/</span><span class="profile-cursor before">_</span>
                 </div>
                 <div class="fade-in">
                     <table>
@@ -181,7 +181,10 @@
 
     <div class="message-box">
         <h1 class="text-white">About me</h1>
-        <p class="text-white">I live with a white sparrow.</p>
+        <p class="text-white">
+            I like coding and developing.<br>
+            In my free time, I often work on programming.
+        </p>
     </div>
 
     <div id="works-terminal" class="card terminal">
@@ -220,9 +223,47 @@
                     <div class="work-contents">
                         <% @works.each do |work| %>
                             <div class="work-info">
+                                <img src="<%= work['imageSrc'] %>" />
                                 <div class="work-name"><%= work['name'] %></div>
                             </div>
                         <% end %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="message-box">
+        <h1 class="text-white">About Pets</h1>
+        <p class="text-white">
+            I live with a white sparrow.<br>
+            Her name is mochi.<br>
+            Please see <a href="https://www.youtube.com/channel/UCltsgrsXcY80rmNVnjI1dxA/featured" target="_blank" rel="noopener noreferrer">Youtube</a> for details.
+        </p>
+    </div>
+
+    <div id="contact-terminal" class="card terminal">
+        <div class="fake-menu-bar">
+            <div class="fake-button finish"></div>
+            <div class="fake-button minimize"></div>
+            <div class="fake-button zoom"></div>
+            <div class="menu-bar-title">
+                <img src="assets/folder_icon.png" class="folder-icon" />contact ー -bash ー <span class="size"></span>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="card-title command-line first">
+                $&nbsp;<span class="profile-cursor">_</span>
+            </div>
+            <%# 連絡 %>
+            <div id="contact" data-animate="typed">
+                <div class="card-title command-line">
+                    $&nbsp;<span class="typing profile-typing">echo $EMAIL</span><span class="profile-cursor before">_</span>
+                </div>
+                <div class="fade-in">
+                    <a href="mailto:live.things.work&#64;gmail.com">live.things.work@gmail.com</a>
+                    <div class="card-title command-line last">
+                        $&nbsp;<span class="profile-cursor">_</span>
                     </div>
                 </div>
             </div>

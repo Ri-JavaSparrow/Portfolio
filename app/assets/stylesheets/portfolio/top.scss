@@ -15,22 +15,22 @@ $dot-space: 22px;
 $profile-word-count: 11;
 $profile-view-delay: 1s;
 // language-skills
-$language-skills-word-count: 14;
+$language-skills-word-count: 15;
 $language-skills-view-delay: 1s;
 // framework-skills
-$framework-skills-word-count: 15;
+$framework-skills-word-count: 16;
 $framework-skills-view1-delay: 0.2s;
 $framework-skills-view2-start: $framework-skills-view1-delay;
 $framework-skills-view2-typing-start: $framework-skills-view2-start+0.3s;
 $framework-skills-view2-delay: $framework-skills-view2-typing-start+1.2s;
 // database-skills
-$database-skills-word-count: 14;
+$database-skills-word-count: 15;
 $database-skills-view1-delay: 0.2s;
 $database-skills-view2-start: $database-skills-view1-delay;
 $database-skills-view2-typing-start: $database-skills-view2-start+0.3s;
 $database-skills-view2-delay: $database-skills-view2-typing-start+1.1s;
 // other-skills
-$other-skills-word-count: 11;
+$other-skills-word-count: 12;
 $other-skills-view1-delay: 0.2s;
 $other-skills-view2-start: $other-skills-view1-delay;
 $other-skills-view2-typing-start: $other-skills-view2-start+0.3s;
@@ -38,6 +38,9 @@ $other-skills-view2-delay: $other-skills-view2-typing-start+1s;
 // works
 $works-word-count: 6;
 $works-view-delay: 0.4s;
+// contact
+$contact-word-count: 11;
+$contact-view-delay: 1s;
 
 /* ------------------------------- */
 
@@ -108,7 +111,7 @@ $works-view-delay: 0.4s;
 
 .message-box {
     width: 100%;
-    height: 10rem;
+    height: 14rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -317,14 +320,43 @@ $works-view-delay: 0.4s;
                     width: 150px;
                     height: 150px;
                     margin: 20px 0 0 20px;
-                    background-color: red;
+                    border-radius: 8px;
+                    cursor: pointer;
                     @include terminal-menu-bar-font;
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        border-radius: 8px;
+                    }
                     // 成果物名
-                    &.work-name {
+                    .work-name {
                         top: 150px;
+                        text-align: center;
                     }
                 }
             }
+        }
+    }
+}
+
+
+/* ------------------------------- */
+
+
+/* ---------------- contact ---------------- */
+
+#contact {
+    opacity: 0;
+    &.typed {
+        opacity: 1;
+        .profile-typing {
+            @include profile-typing($contact-word-count);
+        }
+        .fade-in {
+            @include fade-in($delay: $contact-view-delay);
+        }
+        .profile-cursor {
+            @include profile-cursor($contact-view-delay);
         }
     }
 }
