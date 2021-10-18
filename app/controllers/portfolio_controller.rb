@@ -7,6 +7,7 @@ class PortfolioController < ApplicationController
     @frameworks = Skills::Framework.all
     @databases = Skills::Database.all
     @others = Skills::Other.all
+    @works = Work.all
 
     # 誕生日と年齢のフォーマットを整形する
     birthday = @user['birthday'].in_time_zone('Tokyo')

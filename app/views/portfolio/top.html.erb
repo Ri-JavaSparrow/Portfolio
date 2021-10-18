@@ -3,7 +3,10 @@
 <div class="contents">
     <div class="message-box">
         <h1 class="text-white">Introduction</h1>
-        <p class="text-white">Hi! My name is Ri.</p>
+        <p class="text-white">
+            Hi! My name is Ri.<br>
+            This web app is developed in Ruby on Rails.
+        </p>
     </div>
 
     <div id="profile-terminal" class="card terminal">
@@ -12,7 +15,7 @@
             <div class="fake-button minimize"></div>
             <div class="fake-button zoom"></div>
             <div class="menu-bar-title">
-                <img src="assets/folder_icon.png" class="folder-icon" />portfolio ー -bash ー <span class="size"></span>
+                <img src="assets/folder_icon.png" class="folder-icon" />profile ー -bash ー <span class="size"></span>
             </div>
         </div>
         <div class="card-body">
@@ -64,8 +67,8 @@
     </div>
 
     <div class="message-box">
-        <h1 class="text-white">About</h1>
-        <p class="text-white">This page is a ri's portfolio as a developer.</p>
+        <h1 class="text-white">About this page</h1>
+        <p class="text-white">This is a ri's portfolio as a developer.</p>
     </div>
 
     <div id="skills-terminal" class="card terminal">
@@ -84,7 +87,7 @@
             <%# 言語スキル一覧 %>
             <div id="language-skills" data-animate="typed">
                 <div id="skills" class="card-title command-line">
-                    $&nbsp;<span class="typing profile-typing">ls -l language.skills</span><span class="profile-cursor before">_</span>
+                    $&nbsp;<span class="typing profile-typing">ls -l language</span><span class="profile-cursor before">_</span>
                 </div>
                 <div class="fade-in">
                     <table>
@@ -108,7 +111,7 @@
                     $&nbsp;<span class="profile-cursor before">_</span>
                 </div>
                 <div class="card-title command-line line2">
-                    $&nbsp;<span class="typing profile-typing">ls -l framework.skills</span><span class="profile-cursor before">_</span>
+                    $&nbsp;<span class="typing profile-typing">ls -l framework</span><span class="profile-cursor before">_</span>
                 </div>
                 <div class="fade-in">
                     <table>
@@ -132,7 +135,7 @@
                     $&nbsp;<span class="profile-cursor before">_</span>
                 </div>
                 <div class="card-title command-line line2">
-                    $&nbsp;<span class="typing profile-typing">ls -l database.skills</span><span class="profile-cursor before">_</span>
+                    $&nbsp;<span class="typing profile-typing">ls -l database</span><span class="profile-cursor before">_</span>
                 </div>
                 <div class="fade-in">
                     <table>
@@ -156,7 +159,7 @@
                     $&nbsp;<span class="profile-cursor before">_</span>
                 </div>
                 <div class="card-title command-line line2">
-                    $&nbsp;<span class="typing profile-typing">ls -l other.skills</span><span class="profile-cursor before">_</span>
+                    $&nbsp;<span class="typing profile-typing">ls -l other</span><span class="profile-cursor before">_</span>
                 </div>
                 <div class="fade-in">
                     <table>
@@ -170,6 +173,56 @@
                     </table>
                     <div class="card-title command-line last">
                         $&nbsp;<span class="profile-cursor">_</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="message-box">
+        <h1 class="text-white">About me</h1>
+        <p class="text-white">I live with a white sparrow.</p>
+    </div>
+
+    <div id="works-terminal" class="card terminal">
+        <div class="fake-menu-bar">
+            <div class="fake-button finish"></div>
+            <div class="fake-button minimize"></div>
+            <div class="fake-button zoom"></div>
+            <div class="menu-bar-title">
+                <img src="assets/folder_icon.png" class="folder-icon" />works ー -bash ー <span class="size"></span>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="card-title command-line first">
+                $&nbsp;<span class="profile-cursor">_</span>
+            </div>
+            <%# 成果物一覧 %>
+            <div id="works" data-animate="typed">
+                <div class="card-title command-line">
+                    $&nbsp;<span class="typing profile-typing">open .</span><span class="profile-cursor before">_</span>
+                </div>
+                <div class="fade-in">
+                    <div class="card-title command-line last">
+                        $&nbsp;<span class="profile-cursor">_</span>
+                    </div>
+                </div>
+                <div class="finder">
+                    <div class="finder-side-bar"></div>
+                    <div class="finder-menu-bar">
+                        <div class="finder-button finish"></div>
+                        <div class="finder-button minimize"></div>
+                        <div class="finder-button zoom"></div>
+                        <i class="fa fa-angle-left fa-2x icon left"></i>
+                        <i class="fa fa-angle-right fa-2x icon"></i>
+                        <div class="finder-title">works</div>
+                    </div>
+                    <div class="work-contents">
+                        <% @works.each do |work| %>
+                            <div class="work-info">
+                                <div class="work-name"><%= work['name'] %></div>
+                            </div>
+                        <% end %>
                     </div>
                 </div>
             </div>

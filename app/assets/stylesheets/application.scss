@@ -30,8 +30,25 @@ $pc-min-witdh: 1025px; // PC
 $tab-horizontal-max-witdh: 1024px; // タブレット横長
 $tab-vertical-max-witdh: 768px; // タブレット縦長
 $sp-max-witdh: 480px; // スマホ
+// タイピングのスピード
 $typing-speed: 0.05s;
+// カーソルの点滅スピード
 $cursor-speed: 1s;
+// メニューバー
+$pc-menu-bar-height: 50px;
+$tab-hor-menu-bar-height: 50px;
+$tab-ver-menu-bar-height: 50px;
+$sp-menu-bar-height: 48px;
+// サイドバー
+$pc-side-bar-width: 120px;
+$tab-hor-side-bar-width: 120px;
+$tab-ver-side-bar-width: 100px;
+$sp-side-bar-width: 80px;
+// ファインダー
+$pc-finder-height: 500px;
+$tab-hor-finder-height: 500px;
+$tab-ver-finder-height: 500px;
+$sp-finder-height: 400px;
 
 /* ------------------------------- */
 
@@ -84,19 +101,22 @@ $cursor-speed: 1s;
     }
 }
 
-@mixin terminal-menu-bar-font() {
-    font-family: "MS Pゴシック";
+@mixin terminal-menu-bar-font($pc: 13px,
+$tab-hor: 13px,
+$tab-ver: 13px,
+$sp: 11px) {
+    font-family: "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "メイリオ", "Meiryo", "verdana", sans-serif;
     @include pc {
-        font-size: 13px;
+        font-size: $pc;
     }
     @include tab-horizontal {
-        font-size: 13px;
+        font-size: $tab-hor, ;
     }
     @include tab-vertical {
-        font-size: 13px;
+        font-size: $tab-ver;
     }
     @include sp {
-        font-size: 11px;
+        font-size: $sp;
     }
 }
 
@@ -118,6 +138,111 @@ $typing-start: 0s) {
     -webkit-animation: delay-typing $typing-start, typing ($typing-speed * $word-count) $typing-start steps($word-count) forwards;
     -moz-animation: delay-typing $typing-start, typing ($typing-speed * $word-count) $typing-start steps($word-count) forwards;
     animation: delay-typing $typing-start, typing ($typing-speed * $word-count) $typing-start steps($word-count) forwards;
+}
+
+@mixin fake-button($pc-top,
+$tab-hor-top,
+$tab-ver-top,
+$sp-top) {
+    border-radius: 50%;
+    position: relative;
+    display: inline-block;
+    // 終了ボタン
+    &.finish {
+        background-color: #f13a46;
+    }
+    // 縮小ボタン
+    &.minimize {
+        background-color: #ffc100;
+    }
+    // 拡大ボタン
+    &.zoom {
+        background-color: #00d742;
+    }
+    @include pc {
+        height: 12px;
+        width: 12px;
+        top: $pc-top;
+        margin-left: 8px;
+    }
+    @include tab-horizontal {
+        height: 12px;
+        width: 12px;
+        top: $tab-hor-top;
+        margin-left: 8px;
+    }
+    @include tab-vertical {
+        height: 12px;
+        width: 12px;
+        top: $tab-ver-top;
+        margin-left: 8px;
+    }
+    @include sp {
+        height: 10px;
+        width: 10px;
+        top: $sp-top;
+        margin-left: 6px;
+    }
+}
+
+@mixin menu-bar-height {
+    @include pc {
+        height: $pc-menu-bar-height;
+    }
+    @include tab-horizontal {
+        height: $tab-hor-menu-bar-height;
+    }
+    @include tab-vertical {
+        height: $tab-ver-menu-bar-height;
+    }
+    @include sp {
+        height: $sp-menu-bar-height;
+    }
+}
+
+@mixin side-bar-width {
+    @include pc {
+        width: $pc-side-bar-width;
+    }
+    @include tab-horizontal {
+        width: $tab-hor-side-bar-width;
+    }
+    @include tab-vertical {
+        width: $tab-ver-side-bar-width;
+    }
+    @include sp {
+        width: $sp-side-bar-width;
+    }
+}
+
+@mixin finder-contents-margin {
+    @include pc {
+        margin-left: $pc-side-bar-width;
+    }
+    @include tab-horizontal {
+        margin-left: $tab-hor-side-bar-width;
+    }
+    @include tab-vertical {
+        margin-left: $tab-ver-side-bar-width;
+    }
+    @include sp {
+        margin-left: $sp-side-bar-width;
+    }
+}
+
+@mixin finder-height {
+    @include pc {
+        height: $pc-finder-height;
+    }
+    @include tab-horizontal {
+        height: $tab-hor-finder-height;
+    }
+    @include tab-vertical {
+        height: $tab-ver-finder-height;
+    }
+    @include sp {
+        height: $sp-finder-height;
+    }
 }
 
 
@@ -175,6 +300,7 @@ body {
     z-index: 5;
     margin: 0px auto;
     border-radius: 10px;
+    border: 1px solid #3f3f3f;
     @include pc {
         width: 800px;
     }
@@ -196,18 +322,7 @@ body {
         background-color: rgb(34, 34, 34);
         margin: 0 auto;
         border-radius: 10px 10px 0 0;
-        @include pc {
-            height: 50px;
-        }
-        @include tab-horizontal {
-            height: 50px;
-        }
-        @include tab-vertical {
-            height: 50px;
-        }
-        @include sp {
-            height: 48px;
-        }
+        @include menu-bar-height;
         // タイトル
         .menu-bar-title {
             position: absolute;
@@ -253,49 +368,10 @@ body {
         }
         // フェイクメニューボタン
         .fake-button {
-            border-radius: 50%;
-            // border: 1px solid #000;
-            position: relative;
-            display: inline-block;
-            // 終了ボタン
-            &.finish {
-                background-color: #f13a46;
-                // border-color: #b9353c;
-            }
-            // 縮小ボタン
-            &.minimize {
-                background-color: #ffc100;
-                // border-color: #9d802c;
-            }
-            // 拡大ボタン
-            &.zoom {
-                background-color: #00d742;
-                // border-color: #049931;
-            }
-            @include pc {
-                height: 12px;
-                width: 12px;
-                top: 8px;
-                margin-left: 8px;
-            }
-            @include tab-horizontal {
-                height: 12px;
-                width: 12px;
-                top: 8px;
-                margin-left: 8px;
-            }
-            @include tab-vertical {
-                height: 12px;
-                width: 12px;
-                top: 8px;
-                margin-left: 8px;
-            }
-            @include sp {
-                height: 10px;
-                width: 10px;
-                top: 6px;
-                margin-left: 6px;
-            }
+            @include fake-button(8px,
+            8px,
+            8px,
+            6px);
         }
     }
     // テーブル
@@ -362,6 +438,113 @@ body {
     }
 }
 
+.finder {
+    position: relative;
+    text-align: start;
+    background-color: rgb(22, 22, 22);
+    color: white;
+    z-index: 5;
+    margin: 10px auto 0;
+    border-radius: 10px;
+    border: 1px solid #3f3f3f;
+    width: calc(100% - 20px);
+    @include finder-height;
+    // サイドバー
+    .finder-side-bar {
+        position: absolute;
+        height: 100%;
+        background-color: rgb(34, 34, 34);
+        border-radius: 10px 0 0 10px;
+        border: solid black;
+        border-width: 0 1px 0 0;
+        z-index: 5;
+        @include side-bar-width;
+    }
+    // フェイクメニューバー
+    .finder-menu-bar {
+        width: 100%;
+        box-sizing: border-box;
+        display: flex;
+        background-color: rgb(34, 34, 34);
+        margin: 0 auto;
+        border-radius: 10px 10px 0 0;
+        @include menu-bar-height;
+        // フェイクメニューボタン
+        .finder-button {
+            @include fake-button(16px,
+            16px,
+            16px,
+            12px);
+            &.finish {
+                @include pc {
+                    margin-left: 16px;
+                }
+                @include tab-horizontal {
+                    margin-left: 16px;
+                }
+                @include tab-vertical {
+                    margin-left: 16px;
+                }
+                @include sp {
+                    margin-left: 12px;
+                }
+            }
+            z-index: 6;
+        }
+        // 矢印アイコン
+        .icon {
+            @include pc {
+                height: 50px;
+                margin-top: 8px;
+                margin-left: 16px;
+                &.left {
+                    margin-left: 76px;
+                }
+            }
+            @include tab-horizontal {
+                height: 50px;
+                margin-top: 8px;
+                margin-left: 16px;
+                &.left {
+                    margin-left: 76px;
+                }
+            }
+            @include tab-vertical {
+                height: 50px;
+                margin-top: 8px;
+                margin-left: 16px;
+                &.left {
+                    margin-left: 56px;
+                }
+            }
+            @include sp {
+                height: 48px;
+                margin-top: 9px;
+                margin-left: 10px;
+                &.left {
+                    margin-left: 46px;
+                }
+            }
+            width: 30px;
+            color: #3f3f3f;
+            z-index: 6;
+        }
+        // ファインダーのタイトル
+        .finder-title {
+            @include terminal-menu-bar-font(15px,
+            15px,
+            15px,
+            13px);
+            font-weight: bold;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+}
+
 
 /* ------------------------------- */
 
@@ -374,73 +557,189 @@ body {
     color: #fff;
     font-family: "SFNSMono";
     text-align: left;
-}
-
-#footer a {
-    text-decoration: none;
-    color: #fff;
-}
-
-#footer a:hover {
-    text-decoration: underline;
-}
-
-#footer .primary {
-    background-color: rgba(26, 26, 26, 0.8);
-    @include pc {
-        padding: 40px 20px;
+    a {
+        text-decoration: none;
+        color: #fff;
+        &:hover {
+            text-decoration: underline;
+        }
     }
-    @include tab-horizontal {
-        padding: 40px 20px;
+    .primary {
+        background-color: rgba(26, 26, 26, 0.8);
+        @include pc {
+            padding: 40px 20px;
+        }
+        @include tab-horizontal {
+            padding: 40px 20px;
+        }
+        @include tab-vertical {
+            padding: 20px 20px;
+        }
+        @include sp {
+            padding: 20px 20px;
+        }
     }
-    @include tab-vertical {
-        padding: 20px 20px;
+    .secondary {
+        background-color: rgba(4, 46, 97, 0.8);
+        @include pc {
+            display: flex;
+            padding: 40px 20px;
+        }
+        @include tab-horizontal {
+            display: flex;
+            padding: 40px 20px;
+        }
+        @include tab-vertical {
+            display: block;
+            padding: 20px 20px;
+        }
+        @include sp {
+            display: block;
+            padding: 20px 20px;
+        }
     }
-    @include sp {
-        padding: 20px 20px;
+    /* footer-logo */
+    .logo {
+        position: relative;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        font-weight: bold;
+        @include pc {
+            font-size: 26px;
+        }
+        @include tab-horizontal {
+            font-size: 26px;
+        }
+        @include tab-vertical {
+            font-size: 16px;
+        }
+        @include sp {
+            font-size: 16px;
+        }
     }
-}
-
-#footer .secondary {
-    background-color: rgba(4, 46, 97, 0.8);
-    @include pc {
-        display: flex;
-        padding: 40px 20px;
+    /* navi */
+    .navi {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        @include tab-vertical {
+            font-size: 12px;
+        }
+        @include sp {
+            font-size: 12px;
+        }
+        li {
+            display: inline-block;
+            margin: 0 20px 0 0;
+            padding: 0;
+            @include tab-vertical {
+                margin-top: 5px;
+                font-size: 12px;
+            }
+            @include sp {
+                margin-top: 5px;
+                font-size: 12px;
+            }
+            &:first-child {
+                margin-left: 0;
+            }
+        }
     }
-    @include tab-horizontal {
-        display: flex;
-        padding: 40px 20px;
+    /* sns-navi */
+    .sns-navi {
+        @include pc {
+            margin: 0 0 0 auto;
+            padding: 0;
+        }
+        @include tab-horizontal {
+            margin: 0 0 0 auto;
+            padding: 0;
+        }
+        @include tab-vertical {
+            margin: 20px 0 0;
+            padding: 0;
+        }
+        @include sp {
+            margin: 20px 0 0;
+            padding: 0;
+        }
+        li {
+            display: inline-block;
+            margin: 0 20px 0 0;
+            padding: 0;
+            @include pc {
+                font-size: 20px;
+            }
+            @include tab-horizontal {
+                font-size: 20px;
+            }
+            @include tab-vertical {
+                font-size: 18px;
+            }
+            @include sp {
+                font-size: 18px;
+            }
+            &:last-child {
+                margin-right: 0;
+            }
+        }
     }
-    @include tab-vertical {
-        display: block;
-        padding: 20px 20px;
+    /* sitenavi */
+    .sitenavi {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        @include pc {
+            width: 50%;
+        }
+        @include tab-horizontal {
+            width: 50%;
+        }
+        @include tab-vertical {
+            width: 100%;
+            text-align: center;
+            font-size: 12px;
+        }
+        @include sp {
+            width: 100%;
+            text-align: center;
+            font-size: 12px;
+        }
+        li {
+            display: inline-block;
+            margin: 0 0 0 20px;
+            padding: 0;
+            &:first-child {
+                margin-left: 0;
+            }
+        }
     }
-    @include sp {
-        display: block;
-        padding: 20px 20px;
-    }
-}
-
-
-/* footer-logo */
-
-#footer .logo {
-    position: relative;
-    padding: 0;
-    margin: 0;
-    width: 100%;
-    font-weight: bold;
-    @include pc {
-        font-size: 26px;
-    }
-    @include tab-horizontal {
-        font-size: 26px;
-    }
-    @include tab-vertical {
-        font-size: 16px;
-    }
-    @include sp {
-        font-size: 16px;
+    /* copyright */
+    .copyright {
+        padding: 0;
+        @include pc {
+            width: 100%;
+            margin: 0;
+            text-align: right;
+        }
+        @include tab-horizontal {
+            width: 100%;
+            margin: 0;
+            text-align: right;
+        }
+        @include tab-vertical {
+            width: 100%;
+            margin: 20px 0 0;
+            text-align: center;
+            font-size: 12px;
+        }
+        @include sp {
+            width: 100%;
+            margin: 20px 0 0;
+            text-align: center;
+            font-size: 12px;
+        }
     }
 }
 
@@ -477,144 +776,6 @@ body {
     @include sp {
         display: block;
         margin-top: 15px;
-    }
-}
-
-#footer .navi {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    @include tab-vertical {
-        font-size: 12px;
-    }
-    @include sp {
-        font-size: 12px;
-    }
-}
-
-#footer .navi li {
-    display: inline-block;
-    margin: 0 20px 0 0;
-    padding: 0;
-    @include tab-vertical {
-        margin-top: 5px;
-        font-size: 12px;
-    }
-    @include sp {
-        margin-top: 5px;
-        font-size: 12px;
-    }
-}
-
-#footer .navi li:first-child {
-    margin-left: 0;
-}
-
-
-/* sns-navi */
-
-#footer .sns-navi {
-    @include pc {
-        margin: 0 0 0 auto;
-        padding: 0;
-    }
-    @include tab-horizontal {
-        margin: 0 0 0 auto;
-        padding: 0;
-    }
-    @include tab-vertical {
-        margin: 20px 0 0;
-        padding: 0;
-    }
-    @include sp {
-        margin: 20px 0 0;
-        padding: 0;
-    }
-}
-
-#footer .sns-navi li {
-    display: inline-block;
-    margin: 0 20px 0 0;
-    padding: 0;
-    @include pc {
-        font-size: 20px;
-    }
-    @include tab-horizontal {
-        font-size: 20px;
-    }
-    @include tab-vertical {
-        font-size: 18px;
-    }
-    @include sp {
-        font-size: 18px;
-    }
-}
-
-#footer .sns-navi li:last-child {
-    margin-right: 0;
-}
-
-
-/* sitenavi */
-
-#footer .sitenavi {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    @include pc {
-        width: 50%;
-    }
-    @include tab-horizontal {
-        width: 50%;
-    }
-    @include tab-vertical {
-        width: 100%;
-        text-align: center;
-        font-size: 12px;
-    }
-    @include sp {
-        width: 100%;
-        text-align: center;
-        font-size: 12px;
-    }
-}
-
-#footer .sitenavi li {
-    display: inline-block;
-    margin: 0 0 0 20px;
-    padding: 0;
-}
-
-#footer .sitenavi li:first-child {
-    margin-left: 0;
-}
-
-
-/* copyright */
-
-#footer .copyright {
-    padding: 0;
-    @include pc {
-        width: 100%;
-        margin: 0;
-        text-align: right;
-    }
-    @include tab-horizontal {
-        width: 100%;
-        margin: 0;
-        text-align: right;
-    }
-    @include tab-vertical {
-        width: 100%;
-        margin: 20px 0 0;
-        text-align: center;
-        font-size: 12px;
-    }
-    @include sp {
-        width: 100%;
-        margin: 20px 0 0;
-        text-align: center;
-        font-size: 12px;
     }
 }
 

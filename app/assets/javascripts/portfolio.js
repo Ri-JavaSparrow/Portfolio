@@ -15,14 +15,29 @@ const targetIdsList = [{
             'other-skills'
         ],
         index: 0
+    },
+    {
+        name: 'works-terminal',
+        targetIds: [
+            'works'
+        ],
+        index: 0
     }
 ];
 
+var isAnimated = false;
+
 $(window).on('load scroll', () => {
+    if (isAnimated) {
+        // アニメーション中はスルー
+        return;
+    }
+
     for (var i = 0; i < targetIdsList.length; i++) {
-        var name = targetIdsList[i].name;
-        var targetIds = targetIdsList[i].targetIds;
-        var index = targetIdsList[i].index;
+        var targetData = targetIdsList[i];
+        var name = targetData.name;
+        var targetIds = targetData.targetIds;
+        var index = targetData.index;
 
         if (index >= targetIds.length) {
             // 表示しきっている場合はスルー
@@ -46,21 +61,31 @@ $(window).on('load scroll', () => {
         if (scrollPos > elemOffset - wh + (wh / 2)) {
             // 初期表示している要素を削除
             $(`#${name} .command-line.first`).remove();
+
+            // フェードインする要素のアニメーション終了を監視する
+            var fadeInElem = $(`#${name} ${id} .fade-in`);
+            fadeInElem.on('animationend webkitAnimationEnd', function() {
+                targetData.index++;
+
+                if (targetData.index == targetIds.length) {
+                    // 最後の描写が完了した時ナビゲーションバーにリンクを表示する
+                    var navId = `#${name}`.replace('-terminal', '-menu');
+                    $(navId).removeClass('disable');
+                }
+                // リスナー削除
+                fadeInElem.off();
+                isAnimated = false;
+            });
+
             // タイピング開始
+            isAnimated = true;
             $(elem).addClass(isAnimate);
 
             if (index - 1 >= 0) {
                 // 一つ前のブロックのカーソルを非表示にする
                 typedCursorElems.eq(index - 1).addClass('after');
             }
-
-            targetIdsList[i].index++;
-
-            if (targetIdsList[i].index == targetIds.length) {
-                // 最後の描写が完了した時ナビゲーションバーにリンクを表示する
-                var navId = `#${name}`.replace('-terminal', '-menu');
-                $(navId).removeClass('disable');
-            }
+            return;
         }
     }
 });
@@ -81,6 +106,7 @@ $(function() {
     }
 });
 
+
 var contentsOffset = null;
 $(function() {
     // #で始まるアンカーをクリックした場合に処理
@@ -99,7 +125,7 @@ $(function() {
         // 移動先を調整
         var position = target.offset().top - adjust;
         // スムーススクロール
-        $('body,html').animate({ scrollTop: position }, speed, 'swing');
+        $('body, html').animate({ scrollTop: position }, speed, 'swing');
         return false;
     });
 });
