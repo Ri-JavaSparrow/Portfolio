@@ -159,6 +159,10 @@ $sp-top) {
     &.zoom {
         background-color: #00d742;
     }
+    // ノーマルボタン
+    &.nomal {
+        background-color: #b4b4b4;
+    }
     @include pc {
         height: 12px;
         width: 12px;
@@ -285,7 +289,7 @@ body {
 }
 
 .disable {
-    opacity: 0;
+    color: #3f3f3f;
     pointer-events: none;
     cursor: default;
 }
@@ -301,6 +305,7 @@ body {
     margin: 0px auto;
     border-radius: 10px;
     border: 1px solid #3f3f3f;
+    box-shadow: 0 10px 25px 0 rgba(0, 0, 0, .5);
     @include pc {
         width: 800px;
     }
@@ -448,6 +453,7 @@ body {
     border-radius: 10px;
     border: 1px solid #3f3f3f;
     width: calc(100% - 20px);
+    box-shadow: 0 10px 25px 0 rgba(0, 0, 0, .5);
     @include finder-height;
     // サイドバー
     .finder-side-bar {

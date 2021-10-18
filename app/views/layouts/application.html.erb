@@ -16,7 +16,7 @@
       <h3 class="my-0 mr-md-auto font-weight-normal text-white">Ri Portfolio</h5>
       <nav class="my-2 my-md-0 mr-md-3">
         <% navigations.each do |navigation| %>
-          <a id="<%= navigation[:id] %>" class="p-2 text-white <%= navigation[:class] %>" href="<%= navigation[:link] %>"><%= navigation[:name] %></a>
+          <a id="<%= navigation[:id] %>" class="p-2 <%= navigation[:class] %>" href="<%= navigation[:link] %>"><%= navigation[:name] %></a>
         <% end %> 
       </nav>
     </div>

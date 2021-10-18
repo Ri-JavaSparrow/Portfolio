@@ -222,9 +222,26 @@
                     </div>
                     <div class="work-contents">
                         <% @works.each do |work| %>
-                            <div class="work-info">
-                                <img src="<%= work['imageSrc'] %>" />
+                            <div class="work-overview" onclick="showWork(<%= work.key.id %>)">
+                                <img class="work-image" src="<%= work['imageSrc'] %>" />
                                 <div class="work-name"><%= work['name'] %></div>
+                            </div>
+                            <div id="modal-<%= work.key.id %>" class="modal-dialog hidden">
+                                <div class="work-overview-dialog">
+                                    <div class="work-overview-dialog-menu">
+                                        <div class="work-overview-button nomal close" onclick="hideWork(<%= work.key.id %>)">×</div>
+                                        <div class="work-overview-button nomal"></div>
+                                    </div>
+                                    <div class="work-overview-dialog-contents">
+                                        <img class="work-overview-image" src="<%= work['imageSrc'] %>" />
+                                        <div class="work-overviews">
+                                            <div class="work-overview-name"><%= work['name'] %></div>
+                                            <div class="work-overview-production-time"><%= work['productionTime'] %></div>
+                                            <div class="work-overview-info"><%= work['info'] %></div>
+                                            <div class="work-overview-url"><%= work['url'] %></div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         <% end %>
                     </div>

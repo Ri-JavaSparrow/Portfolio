@@ -78,6 +78,7 @@ $(window).on('load scroll', () => {
                     // 最後の描写が完了した時ナビゲーションバーにリンクを表示する
                     var navId = `#${name}`.replace('-terminal', '-menu');
                     $(navId).removeClass('disable');
+                    $(navId).addClass('text-white');
                 }
                 // リスナー削除
                 fadeInElem.off();
@@ -98,6 +99,7 @@ $(window).on('load scroll', () => {
 });
 
 
+var contentsOffset = null;
 $(function() {
     // リロードしたらページトップに戻す
     $('html,body').animate({ scrollTop: 0 }, '1');
@@ -111,11 +113,7 @@ $(function() {
 
         $(`#${name} .size`).text(`${width}×${height}`);
     }
-});
 
-
-var contentsOffset = null;
-$(function() {
     // #で始まるアンカーをクリックした場合に処理
     $('a[href^="#"]').click(function() {
         if (contentsOffset === null) {
@@ -135,4 +133,23 @@ $(function() {
         $('body, html').animate({ scrollTop: position }, speed, 'swing');
         return false;
     });
+
+    // モーダルダイアログ処理
+    // $('div').click(function() {
+    //     $(this).toggleClass('selected');
+    // });
 });
+
+
+function hideWork(id) {
+    console.log('id:' + id);
+    // モーダルを取得
+    var modal = $(`#modal-${id}`);
+    modal.addClass('hidden');
+}
+
+function showWork(id) {
+    // // モーダルを取得
+    // var modal = $(`#modal-${id}`);
+    // modal.removeClass('hidden');
+}

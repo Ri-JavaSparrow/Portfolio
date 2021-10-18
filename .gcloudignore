@@ -18,5 +18,3 @@ test
 tmp
 log
 *.keep
-
-sacred-flash-329215-*.json

@@ -20,4 +20,12 @@ class PortfolioController < ApplicationController
     @user['like'] = @user['likes'].join('、')
     @user['hobby'] = @user['hobbies'].join('、')
   end
+
+  def show_work
+    respond_to do |format|
+      format.html
+      # link_toメソッドをremote: trueに設定したのでリクエストはjs形式で行われる
+      format.js
+    end
+  end
 end
