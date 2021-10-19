@@ -64,8 +64,8 @@ $(window).on('load scroll', () => {
         // ウィンドウの高さを取得
         var wh = $(window).height();
 
-        // 要素がウィンドウ内の1/3にきたら処理
-        if (scrollPos > elemOffset - wh + (wh / 3)) {
+        // 要素がウィンドウ内の1/4にきたら処理
+        if (scrollPos > elemOffset - wh + (wh / 4)) {
             // 初期表示している要素を削除
             $(`#${name} .command-line.first`).remove();
 
