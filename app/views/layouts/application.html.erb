@@ -9,23 +9,54 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= render 'shared/favicon' %>
   </head>
 
   <body class="body">
-    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-success border-bottom shadow-sm fixed-top">
+    <div class="bg-nav-bar d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 border-bottom shadow-sm fixed-top">
       <h3 class="my-0 mr-md-auto font-weight-normal text-white">Ri Portfolio</h5>
       <nav class="my-2 my-md-0 mr-md-3">
-        <a class="p-2 text-white" href="#">Profile</a>
-        <a class="p-2 text-white" href="#">Skills</a>
-        <a class="p-2 text-white" href="#">Works</a>
-        <a class="p-2 text-white" href="#">Contact</a>
+        <% navigations.each do |navigation| %>
+          <a id="<%= navigation[:id] %>" class="p-2 <%= navigation[:class] %>" href="<%= navigation[:link] %>"><%= navigation[:name] %></a>
+        <% end %> 
       </nav>
     </div>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <div class="contents-margin"></div>
 
     <%= yield %>
 
+    <footer id="footer">
+      <section class="primary">
+        <p class="logo"><a href="#">Ri</a></p>
+        <p class="link">
+          Qiita: <a href="https://qiita.com/ri_java_sparrow" target="_blank" rel="noopener noreferrer">https://qiita.com/ri_java_sparrow</a>
+        </p>
+        <div class="navi-row">
+          <ul class="sns-navi">
+            <li>
+              <a href="https://github.com/ri-chiba" target="_blank" rel="noopener noreferrer">
+                <i class="fa fa-github fa-2x"></i>
+              </a>
+            </li>
+            <li>
+              <a href="https://twitter.com/ri_programmer" target="_blank" rel="noopener noreferrer">
+                <i class="fa fa-twitter fa-2x"></i>
+              </a>
+            </li>
+            <li>
+              <a href="https://www.youtube.com/channel/UCltsgrsXcY80rmNVnjI1dxA/featured" target="_blank" rel="noopener noreferrer">
+                <i class="fa fa-youtube fa-2x"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </section>
+      <section class="secondary">
+        <p class="copyright">Copyright 2021 Ri.</p>
+      </section>
+    </footer>
+
+    <script src="https://use.fontawesome.com/2eabbec088.js"></script>
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
       particlesJS.load('particles-js', '/assets/particlesjs/particlesjs-config.json', function() {

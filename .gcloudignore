@@ -2,6 +2,8 @@
 .gcloudignore
 .gitattributes
 .git
+.browserslistrc
+.ruby-version
 
 Dockerfile
 docker-compose.yml
@@ -13,5 +15,6 @@ docker-compose.yml
 node_modules
 test
 .history
-
-sacred-flash-329215-*.json
+tmp
+log
+*.keep
