@@ -13,6 +13,12 @@ $dot-space: 22px;
 // profile
 $profile-word-count: 11;
 $profile-view-delay: 1s;
+// careers
+$careers-word-count: 12;
+$careers-view1-delay: 0.2s;
+$careers-view2-start: $careers-view1-delay;
+$careers-view2-typing-start: $careers-view2-start+0.3s;
+$careers-view2-delay: $careers-view2-typing-start+1s;
 // language-skills
 $language-skills-word-count: 15;
 $language-skills-view-delay: 1s;
@@ -117,6 +123,10 @@ $contact-view-delay: 1s;
     align-items: center;
 }
 
+.new-line-text {
+    white-space: pre-wrap;
+}
+
 
 /* ---------------- ダイアログ設定 ---------------- */
 
@@ -159,11 +169,50 @@ $contact-view-delay: 1s;
             color: rgb(114, 81, 206);
             @include title(120px, 120px, 120px, 90px);
         }
-        .profile-text {
-            white-space: pre-wrap;
-        }
         .profile-cursor {
             @include profile-cursor($profile-view-delay);
+        }
+    }
+}
+
+#careers {
+    opacity: 0;
+    &.typed {
+        opacity: 1;
+        .profile-typing {
+            @include profile-typing($careers-word-count, $typing-start: $careers-view2-typing-start);
+        }
+        .fade-in {
+            @include fade-in($delay: $careers-view2-delay);
+        }
+        .careers-title {
+            color: #a4e2ff;
+        }
+        .second-line {
+            display: flex;
+            align-items: center;
+        }
+        pre {
+            color: white;
+            margin: 0;
+            @include terminal-font;
+        }
+        .careers-info {
+            background-color: rgba(39, 39, 39, 0.4);
+        }
+        .line1 {
+            .profile-cursor {
+                @include profile-cursor($careers-view1-delay);
+            }
+        }
+        .line2 {
+            @include fade-in($delay: $careers-view2-start);
+            .profile-cursor {
+                @include profile-cursor($careers-view2-delay);
+            }
+        }
+        .profile-cursor {
+            @include profile-cursor($careers-view2-delay);
         }
     }
 }

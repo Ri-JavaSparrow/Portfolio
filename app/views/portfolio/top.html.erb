@@ -55,10 +55,53 @@
                         </tr>
                         <tr>
                             <td class="profile-title"><br>PROFILE:</td>
-                            <td class="profile-text"><br><%= @user['profile'] %></td>
+                            <td class="new-line-text"><br><%= @user['profile'] %></td>
                         </tr>
                     </table>
-                    <div class="card-title command-line last">
+                    <div class="card-title command-line">
+                        $&nbsp;<span class="profile-cursor">_</span>
+                    </div>
+                </div>
+            </div>
+
+            <%# 経歴 %>
+            <div id="careers" data-animate="typed">
+                <div class="card-title command-line line1">
+                    $&nbsp;<span class="profile-cursor before">_</span>
+                </div>
+                <div class="card-title command-line line2">
+                    $&nbsp;<span class="typing profile-typing">tree careers</span><span class="profile-cursor before">_</span>
+                </div>
+                <div class="fade-in">
+                    careers
+                    <table>
+                        <% first_line = '' %>
+                        <% second_line = '' %>
+                        <% @careers.each.with_index do |career, index| %>
+                            <% not_last = index + 1 < @careers.length %>
+                            <tr>
+                                <td colspan="2">
+                                    <%= career['firstLine'] %>── <span class="careers-title"><%= career['title'] %></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="second-line"><pre><%= career['secondLine'] %>   ├── </pre></td>
+                                <td><%= career['duration'] %></td>
+                            </tr>
+                            <tr>
+                                <td class="careers-info-col second-line <%= not_last ? 'not-last' : '' %>">
+                                    <pre><%= career['secondLine'] %>   └── </pre>
+                                </td>
+                                <td class="careers-info new-line-text <%= not_last ? 'not-last' : '' %>"><%= career['info'] %></td>
+                            </tr>
+                            <% if not_last then %>
+                                <tr>
+                                    <td>│</td>
+                                </tr>
+                            <% end %>
+                        <% end %>
+                    </table>
+                    <div class="card-title command-line">
                         $&nbsp;<span class="profile-cursor">_</span>
                     </div>
                 </div>

@@ -2,7 +2,8 @@
 const targetIdsList = [{
         name: 'profile-terminal',
         targetIds: [
-            'profile'
+            'profile',
+            'careers'
         ],
         index: 0
     },
@@ -152,4 +153,56 @@ function showWork(id) {
     // // モーダルを取得
     // var modal = $(`#modal-${id}`);
     // modal.removeClass('hidden');
+}
+
+
+$(document).ready(function() {
+    // 改行の分「│」を追加する
+    var newLineElems = $('.careers-info.not-last');
+    var newLineColElems = $('.careers-info-col.not-last pre');
+    for (var index = 0; index < newLineElems.length; index++) {
+        var newLineElem = newLineElems.eq(index);
+        var newLineColElem = newLineColElems.eq(index);
+
+        // 行数を求める
+        var numberOfLines = countNumberOfLines(newLineElem);
+        var text = newLineColElem.text();
+        for (var i = 0; i < numberOfLines - 1; i++) {
+            text += '\n│';
+        }
+        newLineColElem.text(text);
+    }
+
+});
+
+const countNumberOfLines = (elem) => {
+    var text = elem.text();
+
+    // 1行の高さ取得
+    elem.text('a');
+    var rowHeight = elem.height();
+
+    var rowCount = 1;
+
+    // 一旦空にする
+    elem.text('');
+
+    for (var i = 0; i < text.length; i++) {
+
+        // 一文字取得して追加
+        var s = text.substring(i, i + 1);
+        elem.text(elem.text() + s);
+
+        // 現在の高さ取得
+        height = elem.height();
+
+        if (height != rowHeight) {
+            // 高さが変わったら行数インクリメント
+            rowHeight = height;
+            rowCount++;
+        }
+
+    }
+
+    return rowCount;
 }

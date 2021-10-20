@@ -403,6 +403,8 @@ body {
     table td {
         @include terminal-font;
         line-height: 1.5;
+        display: table-cell;
+        vertical-align: inherit;
     }
     .card-title {
         @include pc {

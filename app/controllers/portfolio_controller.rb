@@ -3,10 +3,13 @@ require "date"
 class PortfolioController < ApplicationController
   def top
     @user = User.get
+    @careers = Career.all
+
     @languages = Skills::Language.all
     @frameworks = Skills::Framework.all
     @databases = Skills::Database.all
     @others = Skills::Other.all
+
     @works = Work.all
 
     # 誕生日と年齢のフォーマットを整形する
@@ -19,13 +22,5 @@ class PortfolioController < ApplicationController
     # 好きなものと趣味のフォーマットを整形する
     @user['like'] = @user['likes'].join('、')
     @user['hobby'] = @user['hobbies'].join('、')
-  end
-
-  def show_work
-    respond_to do |format|
-      format.html
-      # link_toメソッドをremote: trueに設定したのでリクエストはjs形式で行われる
-      format.js
-    end
   end
 end
